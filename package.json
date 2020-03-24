@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "build": "cd client && npm install --no-fund && npm run build",
+    "build": "cd client && npm run build",
     "dev": "DEBUG=npp:* nodemon ./bin/www",
     "inspect": "nodemon --inspect bin/www",
     "dev-windows": "nodemon ./bin/www"
