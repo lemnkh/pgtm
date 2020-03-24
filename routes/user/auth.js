@@ -31,7 +31,7 @@ router.post("/signup", uploadCloud.single('profile-pic'), (req, res, next) => {
     .then(user => {
       // on vérifie si l'adresse n'est pas déjà enregistrée
       if (user !== null) {
-        res.status(400).json({ message: "Oh-oh! This email address is already registered." });
+        res.status(401).json({ message: "Oh-oh! This email address is already registered." });
         return;
       }
 
@@ -71,7 +71,7 @@ router.post("/signup", uploadCloud.single('profile-pic'), (req, res, next) => {
 // LOGIN
 ///////////
 
-router.post('user/login', (req, res, next) => {
+router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, failureDetails) => {
       if (err) {
           res.status(500).json({ message: 'Something went wrong, cannot log in' });
@@ -99,7 +99,7 @@ router.post('user/login', (req, res, next) => {
 
 
 // logged in ou pas ???
-router.get('user/loggedin', (req, res, next) => {
+router.get('/loggedin', (req, res, next) => {
   if (!req.user) {
     res.status(403).json({ message: "Not logged in" });
     return;
@@ -109,7 +109,7 @@ router.get('user/loggedin', (req, res, next) => {
 });
 
 // pour le logout
-router.get('user/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   req.logout();
   res.status(204).json({ message: 'Logged out successfully' });
 });
