@@ -134,9 +134,16 @@ app.use('/api', require('./routes/articles/all.js')); // GET tous les articles
 
 app.use('/api', require('./routes/articles/show.js')); // GET voir l'article, sans être un user
 
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// route not-found => could be a React route => render the SPA
 app.use((req, res, next) => {
-  // If no routes match, send them the React HTML.
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(path.join(__dirname, 'client/build/index.html'), function (err) {
+    if (err) {
+      next(err)
+    }
+  })
 });
 
 module.exports = app;
