@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthService from '../components/AuthService';
 import { Link } from 'react-router-dom';
+import '../Back.css';
 
 class Login extends React.Component {
   state = {
@@ -25,7 +26,8 @@ class Login extends React.Component {
         email: "",
         password: ""
       });
-      this.props.getUser(response)
+      this.props.getUser(response);
+      this.props.history.push('/pgtm/admin/articles');
     })
     .catch( error => console.log(error) )
   
@@ -72,7 +74,7 @@ class Login extends React.Component {
       
           <p className="under-submit">
             You don't have an account yet?<br/>
-            You can <b><Link to="npp/admin/signup">sign up</Link></b>.
+            You can <b><Link to="/pgtm/admin/signup">sign up</Link></b>.
           </p>
         </form>
       </div>

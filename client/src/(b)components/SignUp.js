@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthService from '../components/AuthService';
 import { Link } from 'react-router-dom'; 
+import '../Back.css';
 
 class SignUp extends React.Component {
   state = {
@@ -32,7 +33,8 @@ class SignUp extends React.Component {
         picFeatured: ""
       });
       // pour garder la session du user
-      this.props.getUser(response)
+      this.props.getUser(response);
+      this.props.history.push('/pgtm/admin/articles');
     })
     .catch(error => console.log(error))
   
@@ -121,7 +123,7 @@ class SignUp extends React.Component {
       
           <p className="under-submit">
             Do you already have an account?<br/>
-            Awesome, let's get you <Link to="/npp/admin/login">logged in</Link>!
+            Awesome, let's get you <Link to="/pgtm/admin/login">logged in</Link>!
           </p>
         </form>
       </div>

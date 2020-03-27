@@ -1,5 +1,6 @@
 import React from 'react';
 import ArticlesService from '../components/ArticlesService';
+import '../Back.css';
 
 class AddRegularArticle extends React.Component {
     state = {
@@ -13,11 +14,9 @@ class AddRegularArticle extends React.Component {
         authorIG: "",
         chapo: "",
         articleContent: "", /* contenu de l'article */
-        lang: "", /* langue pour filtrer plus tard */
-        cat: "", /* catégorie */
-        tags: "",
-        selectedLang: "french",
-        selectedCat: "Nouveaux artistes"
+        lang: "french",
+        cat: "Nouveaux artistes",
+        tags: ""
     };
 
     service = new ArticlesService();
@@ -29,23 +28,23 @@ class AddRegularArticle extends React.Component {
     
     handleOptionChange = (changeEvent) => {
         this.setState({
-          selectedLang: changeEvent.target.value
+          lang: changeEvent.target.value
         })
     };
 
     handleCheckboxChange = (changeEvent) => {
         this.setState({
-          selectedCat: changeEvent.target.value
+          cat: changeEvent.target.value
         })
     };
 
     handleSubmitForm = (event) => {
         event.preventDefault();
-        const {title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags, selectedLang, selectedCat} = this.state;
+        const {title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags} = this.state;
         console.log(title);
 
         // on fait appel à l'instance du service spé articles
-        this.service.newArticle(title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags, selectedLang, selectedCat)
+        this.service.newArticle(title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags)
             .then(response => {
                 // on reset le form
                 this.setState({
@@ -61,22 +60,23 @@ class AddRegularArticle extends React.Component {
                     articleContent: "", /* contenu de l'article */
                     lang: "", /* langue pour filtrer plus tard */
                     cat: "", /* catégorie */
-                    tags: "",
-                    selectedLang: "french",
-                    selectedCat: "Nouveaux artistes"
+                    tags: ""
                 });
 
                 // calling the parent
                 // do I really need this bit????
-                this.props.addTheArticle(this.state);
+                //this.props.addTheArticle(this.state);
+
+                this.props.history.push('/pgtm/admin/articles');
             })
             .catch(error => console.log(error))    
     };
 
     render() {
+        console.log(this.props);
         return (
             <div className="regular-article">
-                <form onSubmit={this.handleSubmitForm} enctype="multipart/form-data">
+                <form onSubmit={this.handleSubmitForm} encType="multipart/form-data">
                 <p>
                     <label>
                         <div className="field">
@@ -236,7 +236,7 @@ class AddRegularArticle extends React.Component {
                             type="radio"
                             name="language"
                             value="french"
-                            checked={this.state.selectedLang === "french"}
+                            checked={this.state.lang === "french"}
                             onChange={this.handleOptionChange}
                             className="form-check-input"
                             />
@@ -246,7 +246,7 @@ class AddRegularArticle extends React.Component {
                             type="radio"
                             name="language"
                             value="english"
-                            checked={this.state.selectedLang === "english"}
+                            checked={this.state.lang === "english"}
                             onChange={this.handleOptionChange}
                             className="form-check-input"
                             />
@@ -265,7 +265,7 @@ class AddRegularArticle extends React.Component {
                             type="checkbox"
                             name="cat"
                             value="Nouveaux artistes"
-                            checked={this.state.selectedCat === "Nouveaux artistes"}
+                            checked={this.state.cat === "Nouveaux artistes"}
                             onChange={this.handleCheckboxChange}
                             className="form-check-input"
                             />
@@ -275,7 +275,7 @@ class AddRegularArticle extends React.Component {
                             type="checkbox"
                             name="cat"
                             value="Rencontres"
-                            checked={this.state.selectedCat === "Rencontres"}
+                            checked={this.state.cat === "Rencontres"}
                             onChange={this.handleCheckboxChange}
                             className="form-check-input"
                             />
@@ -285,7 +285,7 @@ class AddRegularArticle extends React.Component {
                             type="checkbox"
                             name="cat"
                             value="Concerts"
-                            checked={this.state.selectedCat === "Concerts"}
+                            checked={this.state.cat === "Concerts"}
                             onChange={this.handleCheckboxChange}
                             className="form-check-input"
                             />
