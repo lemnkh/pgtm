@@ -21,11 +21,45 @@ class AddRegularArticle extends React.Component {
 
     service = new ArticlesService();
 
+    componentDidMount = () => {
+        // if not logged in, redirect
+        if (!this.props.status) {
+            this.props.history.push('/pgtm/admin/login');
+            return;
+        }
+    }
+
     handleChange = (event) => {  
         const {name, value} = event.target;
         this.setState({[name]: value});
     };
     
+    handleUploadFeatured = (event) => {
+        let formData = new FormData();
+        formData.append('photo', event.target.files[0]);
+    
+        this.service.uploadPicFeatured(formData)
+          .then(response => {
+              this.setState({ picFeatured: response.secure_url });
+          })
+          .catch(err => {
+            console.log("Error while uploading the file: ", err);
+            })
+    };
+
+    // handleUploadPlaylist = (event) => {
+    //     let formData = new FormData();
+    //     formData.append('photo', event.target.files[0]);
+    
+    //     this.service.uploadPicPlaylist(formData)
+    //       .then(response => {
+    //           this.setState({ picPlaylist: response.secure_url });
+    //       })
+    //       .catch(err => {
+    //         console.log("Error while uploading the file: ", err);
+    //         })
+    // };
+
     handleOptionChange = (changeEvent) => {
         this.setState({
           lang: changeEvent.target.value
@@ -74,6 +108,10 @@ class AddRegularArticle extends React.Component {
 
     render() {
         console.log(this.props);
+        if (this.props.user === {}) {
+            this.props.history.push('/pgtm/admin/login');
+        }
+
         return (
             <div className="regular-article">
                 <form onSubmit={this.handleSubmitForm} encType="multipart/form-data">
@@ -116,7 +154,7 @@ class AddRegularArticle extends React.Component {
                             type="file"
                             name="picFeatured"
                             value={this.state.picFeatured}
-                            onChange={(e) => this.handleChange(e)} />
+                            onChange={this.handleUpload} />
                         </div>
                         </div>
                     </label>

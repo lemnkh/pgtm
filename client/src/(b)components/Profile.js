@@ -1,54 +1,79 @@
 import React from 'react';
 import AuthService from '../components/AuthService';
-import { Link } from 'react-router-dom'; 
 import '../Back.css';
 
-class SignUp extends React.Component {
+class Profile extends React.Component {
   state = {
-    name: '',
-    email: '',
-    password: '',
-    profilePic: ''
+    profile: {
+      name: "",
+      email: "",
+      password: "",
+      profilePic: this.props.user.profilePic
+    }
   };
 
   service = new AuthService();
 
+  componentDidMount = () => {
+
+    // if not logged in, redirect
+    if (!this.props.status) {
+      this.props.history.push('/pgtm/admin/login');
+      return;
+    }
+
+    // if logged in, fetch profile
+    if (this.props.status === true) {
+      this.service.getProfile()
+          .then(profile => {
+            this.setState({profile});
+            console.log("state here", this.state.profile);
+            console.log("logged", this.props.status)
+          })
+          .catch(error => console.log(error))
+    }
+  }
+
   handleFormSubmit = (event) => {
-    
     event.preventDefault();
 
-    if (!this.state.profilePic) return;
-
-    console.log("state avant service.signup", this.state);
+    console.log("state here", this.state.profile);
+    
 
     // là on fait appel à l'instance d'AuthService qu'on a créée
-    this.service.signup(this.state)
-    .then(response => {
-      console.log("pp in the state right dans submit", this.state.profilePic);
-      console.log("je suis dans le then du service.signup", response);
+    this.service.updateProfile(this.state.profile)
+      .then(response => {
+        console.log("je suis dans le then du service.signup")
 
-      // pour garder la session du user passée en props depuis App.js
-      this.props.updateUser(response);
+      // pour garder la session du user
+        console.log("response update:", response);
+        this.props.updateUser(response);
 
-      // on reset le form pour que protéger les infos du user
-      this.setState({
-        name: "", 
-        email: "",
-        password: "",
-        profilePic: ""
-      });
+        // on reset le form pour que protéger les infos du user
+        this.setState({
+          name: "", 
+          email: "",
+          password: "",
+          profilePic: this.props.user.profilePic
+        });
 
-      // redirect
-      this.props.history.push("/pgtm/admin/articles");
-    })
-    .catch(error => console.log(error))
+        // redirect
+        this.props.history.push('/pgtm/admin/articles');
+      
+      })
+      .catch(error => console.log(error))
   
   };
 
   handleChange = (event) => {  
     const {name, value} = event.target;
-    this.setState({[name]: value});
-  };
+    this.setState({
+        profile: {
+            ...this.state.profile,
+            [name]: value,
+        }
+    });
+    };
 
   handleUpload = (event) => {
     const uploadData = new FormData();
@@ -56,7 +81,7 @@ class SignUp extends React.Component {
     
     this.service.upload(uploadData)
         .then(response => {
-            this.setState({ profilePic: response.secure_url });
+            this.setState({ profile: {profilePic: response.secure_url} });
             console.log("dans then upload", this.state.profilePic)
         })
         .catch(err => {
@@ -65,6 +90,11 @@ class SignUp extends React.Component {
   };
 
   render() {
+      console.log("these are the props", this.props.status);
+      if (!this.props.user) {
+        this.props.history.push('/pgtm/admin/login');
+      }
+
     return (
         <div className="center-page">
         <form className="center-form" onSubmit={this.handleFormSubmit}>
@@ -76,7 +106,7 @@ class SignUp extends React.Component {
                   <input
                   type="text"
                   name="name"
-                  value={this.state.name}
+                  value={this.state.profile.name}
                   onChange={ e => this.handleChange(e)}/>
                 </div>
               </div>
@@ -91,7 +121,7 @@ class SignUp extends React.Component {
                   <input
                   type="text"
                   name="email" 
-                  value={this.state.email}
+                  value={this.state.profile.email}
                   onChange={ e => this.handleChange(e)}/>
                 </div>
               </div>
@@ -106,7 +136,6 @@ class SignUp extends React.Component {
                   <input
                   type="password"
                   name="password"
-                  value={this.state.password}
                   onChange={ e => this.handleChange(e)}/>
                 </div>
               </div>
@@ -120,22 +149,18 @@ class SignUp extends React.Component {
                 <div className="field-content">
                   <input
                   type="file"
+                  name="profilePic"
                   onChange={(e) => this.handleUpload(e)}/>
                 </div>
               </div>
             </label>
           
       
-          <button type="submit">Sign up</button>
-      
-          <p className="under-submit">
-            Do you already have an account?<br/>
-            Awesome, let's get you <Link to="/pgtm/admin/login">logged in</Link>!
-          </p>
+          <button type="submit">Save</button>
         </form>
       </div>
     );
   }
 }
   
-export default SignUp;
+export default Profile;

@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
+
+const mongoose = require('mongoose');
+
 const Article = require('../../models/article.js');
-const User = require('../../models/user.js');
-const mongoose     = require('mongoose');
 
 // on trouve l'article pour pouvoir l'afficher
 router.get("/articles/:id", (req, res, next) => {

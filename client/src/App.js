@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Home from './(f)components/Home';
 import SignUp from './(b)components/SignUp';
 import Login from './(b)components/Login';
+import Profile from './(b)components/Profile';
 import AddRegularArticle from './(b)components/AddRegularArticle';
 import EditRegularArticle from './(b)components/EditRegularArticle';
 import ListOfArticles from './(b)components/ListOfArticles';
@@ -11,31 +12,47 @@ import AuthService from './components/AuthService';
 class App extends Component {
 
   state = {
-    loggedInUser: null
+    user: {},
+    logged: false
   }
 
   service = new AuthService();
 
-  fetchUser() {
-    if (this.state.loggedInUser === null){
+  fetchUser = () => {
+    if (!this.state.user.id) {
       this.service.loggedin()
-        .then(response => {
-          this.setState({loggedInUser: response})
-        })
-        .catch(err => {
-          this.setState({loggedInUser: false}) 
-        })
+        .then(data => {
+          console.log("data", data);
+          if (!data) {
+            this.setState({
+              user: {},
+              logged: false
+            })
+          } else {
+              this.setState({
+                user: data,
+                logged: true
+              })
+          }
+        }
+        )
+        .catch(err => console.log(err))
+      ;
+    } else {
+      console.log('User already in the state: ', this.state.user)
     }
-  }
+  };
+
+  updateTheUser = (data) => {
+    this.setState({
+      user: data,
+      logged: true
+    });
+  };
 
   componentDidMount() {
     this.fetchUser();
-  }
-
-  getTheUser = (userObj) => {
-    this.setState({
-      loggedInUser: userObj
-    })
+    console.log("logged", this.state.logged)
   }
 
   render() {
@@ -44,11 +61,12 @@ class App extends Component {
 
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route path='/pgtm/admin/signup' render={(props) => <SignUp getUser={this.getTheUser} history={props.history} />}/>
-          <Route path='/pgtm/admin/login' render={(props) => <Login getUser={this.getTheUser} history={props.history} />}/>
-          <Route exact path='/pgtm/admin/articles/new' component={AddRegularArticle}/>
-          <Route exact path='/pgtm/admin/articles/:id' component={EditRegularArticle}/>
-          <Route exact path='/pgtm/admin/articles' component={ListOfArticles}/>
+          <Route path='/pgtm/admin/signup' render={(props) => <SignUp status={this.state.logged} updateUser={this.updateTheUser} history={props.history} />}/>
+          <Route path='/pgtm/admin/login' render={(props) => <Login status={this.state.logged} updateUser={this.updateTheUser} history={props.history} />}/>
+          <Route path='/pgtm/admin/profile' render={(props) => <Profile status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
+          <Route exact path='/pgtm/admin/articles/new' render={(props) => <AddRegularArticle status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
+          <Route exact path='/pgtm/admin/articles/:id' render={(props) => <EditRegularArticle status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
+          <Route exact path='/pgtm/admin/articles' render={(props) => <ListOfArticles status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} />}/>
         </Switch>
 
       </div>

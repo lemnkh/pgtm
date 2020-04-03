@@ -6,7 +6,7 @@ const User = require('../../models/user.js');
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-const uploadCloud = require('../../config/cloudinary.js');
+const uploader = require('../../config/cloudinary');
 
 const passport = require("passport");
 
@@ -14,15 +14,16 @@ const passport = require("passport");
 // SIGNUP
 ///////////
 
-router.post("/signup", uploadCloud.single('profile-pic'), (req, res, next) => {
+router.post("/signup", (req, res, next) => {
+  
   const name = req.body.name;
   const email = req.body.email;
+  const profilePic = req.body.profilePic;
   const password = req.body.password;
-  const profilePic = req.file && req.file.url;
-  // req.file ? req.file.url : null 
+  // const profilePic = req.file && req.file.profilePic;
 
   // on vérifie que les champs obligatoires ne sont pas vides 
-  if (name === "" || password === "" || email === "") {
+  if (req.body.name === "" || req.body.password === "" || req.body.email === "") {
     res.status(401).json({ message: "Hold on there! You need to enter a media name, an email address and a password to register" });
     return;
   }

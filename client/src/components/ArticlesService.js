@@ -6,6 +6,16 @@ class ArticlesService {
             withCredentials: true
     });
 
+    uploadPicFeatured = (pic) => {
+        return this.service.post('/articles/upload', pic)
+          .then(response => response.data)
+    };
+
+    uploadPicPlaylist = (pic) => {
+        return this.service.post('/playlists/upload', pic)
+          .then(response => response.data)
+    };
+
     newArticle = (title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags) => {
         return this.service.post('/articles', {title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags})
         .then(response => response.data)
@@ -30,6 +40,10 @@ class ArticlesService {
     allArticles = () => {
         return this.service.get('/articles').then(response => response.data)
     };
+
+    latestArticle = () => {
+        return this.service.get('/latest').then(response => response.data)
+    }
 }
 
 export default ArticlesService;

@@ -4,7 +4,7 @@ const User = require('./user.js');
 
 const ArticleSchema = new Schema({
   userId: {type: Schema.Types.ObjectId, ref: 'User'},
-  title: String,
+  title: { type: String, required: true },
   overview: String, /* résumé de l'article */
   picFeatured: String, /* image de Une */
   picCaption: String, /* légende image de Une */
@@ -13,11 +13,11 @@ const ArticleSchema = new Schema({
   playlistSpotify: String, /* SI PLAYLIST */
   playlistDeezer: String, /* SI PLAYLIST */
   playlistYoutube: String, /* SI PLAYLIST */
-  author: String,
+  author: { type: String, required: true },
   authorTwitter: String,
   authorIG: String,
   chapo: String,
-  articleContent: String, /* contenu de l'article */
+  articleContent: { type: String, required: true }, /* contenu de l'article */
   lang: String, /* langue pour filtrer plus tard */
   cat: String, /* catégorie */
   tags: Array

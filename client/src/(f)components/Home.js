@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../(f)components/Layout';
-import AddRegularArticle from '../(b)components/AddRegularArticle';
+import PublicService from '../components/PublicService';
 
 class Home extends React.Component {
   // state = {
@@ -13,13 +13,31 @@ class Home extends React.Component {
   //   })
   // }
 
+  state = {
+    latest: [{}] // faut déclarer objet dans tableau parce que c'est le type de réponse que l'on reçoit dans latestArticle
+    // le componentDidMount est un second render donc faut que le type vide dans le state match ce avec quoi on va remplir
+  }
+
+  service = new PublicService();
+
+  componentDidMount = () => {
+    this.service.latestArticle()
+      .then(response => {
+        this.setState({
+          latest: response
+        })
+        console.log("resp", this.state.latest[0].title);
+      })
+      .catch(err => console.log(err))
+  }
+
   render() {
     return (
         <div className="App">
             <Layout>
-                <h1>Welcome to our website!</h1>
-
-                <AddRegularArticle addTheRegularArticle={this.addRegularArticleHandler}  />
+               
+            <img src={this.state.latest[0].featuredPic} alt="featured" />
+            {this.state.latest[0].title}
             </Layout>
         </div>
     );

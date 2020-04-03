@@ -1,15 +1,16 @@
 import React from 'react';
-import NavBar from '../(f)components/NavBar';
+import Menu from '../(f)components/Menu';
 import Newsletter from '../(f)components/Newsletter';
 import Logo from '../(f)components/Logo';
 
 class Header extends React.Component {
     render() {
+      
       return (
-        <div className="Header">
+        <div className="header">
             <Newsletter />
             <Logo />
-            <NavBar />
+            <Menu />
         </div>
       );
     }

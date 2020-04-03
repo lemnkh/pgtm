@@ -16,7 +16,9 @@ class Layout extends React.Component {
     render() {
       return (
         <div className="layout">
-            <Header />
+            <div className="navbar-on-top">
+              <Header />
+            </div>
         
             <div className="content-site">{this.props.children}</div>
         

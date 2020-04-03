@@ -2,12 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Article = require('../../models/article.js');
 const User = require('../../models/user.js');
-const uploadCloud = require('../../config/cloudinary.js');
+
 
 
 //New article
-
-router.post("/articles", uploadCloud.fields([{name: 'picFeatured', maxCount: 1}, {name: 'picPlaylist', maxCount:1}]), (req, res, next) => {
+router.post("/articles", (req, res, next) => {
   if (!req.user) {
     res.status(401).json({message: "You have to log in to create an article!"})
     return;

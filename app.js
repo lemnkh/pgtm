@@ -117,7 +117,6 @@ app.use(cors({
   origin: ['http://localhost:3000']
 }));
 
-
 /* ROUTES USER */
 
 app.use('/api', require('./routes/user/auth.js'));
@@ -134,6 +133,11 @@ app.use('/api', require('./routes/articles/all.js')); // GET tous les articles
 
 app.use('/api', require('./routes/articles/show.js')); // GET voir l'article, sans être un user
 
+app.use('/api', require('./routes/articles/queries.js')); // GET info pour homepage
+
+/* IMAGE UPLOAD ROUTE */
+
+app.use('/api', require('./routes/articles/imagesUpload.js'));
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 

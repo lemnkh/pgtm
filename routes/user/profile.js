@@ -8,6 +8,8 @@ const bcryptSalt = 10;
 
 const uploadCloud = require('../../config/cloudinary.js');
 
+const passport = require("passport");
+
 
 /////////////////////////////////
 // VIEW PROFILE
@@ -21,7 +23,14 @@ router.get('/user/profile', (req, res) => {
 
   User.findOne({_id: req.user.id})
   .then((user) => {
-    res.status(201).json({ user: req.user });
+    console.log("user found", user);
+    res.status(201).json({
+      _id: req.user._id,
+      name: req.user.name,
+      email: req.user.email,
+      password: req.user.password,
+      profilePic: req.user.profilePic
+     });
   })
   .catch ((err) => {
     console.log(err);
@@ -32,49 +41,76 @@ router.get('/user/profile', (req, res) => {
 // MODIFY PROFILE
 ///////////
 
-router.put('/user/profile', uploadCloud.single('profile-pic'), (req, res, next) => {
+router.put('/user/profile', (req, res, next) => {
   const name = req.body.name;
-  const email = req.body.email;
+  const currentEmail = req.user.email;
+  const email = req.body.email
   const password = req.body.password; // undefined
-  const profilePic = req.file ? req.file.url : req.user.profilePic;
+  const profilePic = req.body.profilePic;
 
   // if : req.file && req.file.url; 
   // if else : req.file ? req.file.url : null // opérateur ternair
 
   // on vérifie que les champs obligatoires ne sont pas vides 
-  if (name === "" || password === "" || email === "") {
+  if (name === "" || email === "") {
     res.status(401).json({ message: "Hold on there! You need to enter a username, an email address and a password to register." });
     return;
   }
 
-  User.findOne({ email })
+  User.findOne({ currentEmail })
     .then(user => {
-      // on vérifie si l'adresse n'est pas déjà enregistrée
-      if (user !== null && JSON.stringify(user._id) !== JSON.stringify(req.user._id)) {
-        res.status(400).json({ "message": "Oh-oh! This email address is already registered." });
-        return;
-      }
 
       let hashPass;
-      if (password) {
+      
         // un même mdp est encrypté toujours pareil pour 1 même "secret"
         const salt = bcrypt.genSaltSync(bcryptSalt);
         hashPass = bcrypt.hashSync(password, salt);
+      
+
+      let obj = {
+        name,
+        email,
+        profilePic
+      };
+      if (hashPass === req.user.password || password === "") {
+        obj.password = hashPass;
+        console.log("password same");
+      }
+      
+      if (currentEmail === email || email === "") {
+        obj.email = currentEmail;
+        console.log("email same", obj.email);
       }
 
-      let obj = {name,email,profilePic}
-      if (hashPass) {
-        obj.password = hashPass;
+      if (name === req.user.name || name === "") {
+        obj.name = req.user.name;
+        console.log("name same", obj.name);
       }
+
+      if (profilePic === req.user.profilePic || profilePic === "" || profilePic === null || profilePic === undefined) {
+        obj.profilePic = req.user.profilePic;
+        console.log("pp same", obj.profilePic);
+      }
+
+      console.log("obj=", obj, "req.user", req.user, "just user", user);
 
       // update
-      User.findOneAndUpdate({_id: req.user.id}, {$set: obj}, {new: true})
-        .then(updatedUser => {
-          res.status(200).json(updatedUser);
+      // User.findOneAndUpdate({_id: req.user._id}, {$set: obj}, {new: true})
+      //   .then(updatedUser => {
+      //     res.status(200).json(updatedUser);
+      //   })
+      //   .catch(err => {
+      //     next(err);
+      //   })
+
+    User.update({_id: req.user.id}, {$set: obj})
+        .then((user) => {
+          console.log("updated user", user)
+            res.json(obj);
         })
-        .catch(err => {
-          next(err);
-        })
+        .catch((err) => {
+            next(err);
+        });
 
     })
     .catch(err => {

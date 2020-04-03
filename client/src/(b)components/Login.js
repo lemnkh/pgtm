@@ -20,14 +20,14 @@ class Login extends React.Component {
     // là on fait appel à l'instance d'AuthService qu'on a créée
     this.service.login(email, password)
     .then( response => {
-      console.log("je suis dans le then du service.login")
+      console.log("je suis dans le then du service.login, this is the response :", response)
       // on reset le form
       this.setState({
         email: "",
         password: ""
       });
-      this.props.getUser(response);
-      this.props.history.push('/pgtm/admin/articles');
+      this.props.updateUser(response);
+      this.props.history.push("/pgtm/admin/articles");
     })
     .catch( error => console.log(error) )
   

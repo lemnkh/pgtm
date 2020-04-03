@@ -25,6 +25,12 @@ class EditRegularArticle extends React.Component {
     service = new ArticlesService();
 
     componentDidMount = () => {
+        // if not logged in, redirect
+        if (!this.props.status) {
+            this.props.history.push('/pgtm/admin/login');
+            return;
+        }
+
         this.service.getArticle(this.props.match.params.id)
             .then(article => this.setState({article}))
             .catch(error => console.log(error))
@@ -61,7 +67,6 @@ class EditRegularArticle extends React.Component {
     handleSubmitForm = (event) => {
         event.preventDefault();
         const {title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags} = this.state.article;
-        console.log(title);
 
         // on fait appel à l'instance du service spé articles
         this.service.updateArticle(this.props.match.params.id, title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags)
@@ -86,14 +91,16 @@ class EditRegularArticle extends React.Component {
                 // calling the parent
                 // do I really need this bit????
                 // this.props.addTheArticle(this.state);
+                
+                // redirect
+                this.props.history.push('/pgtm/admin/articles');
+
                 console.log("ok", response)
             })
             .catch(error => console.log(error))    
     };
 
     render() {
-        console.log("test", this.state);
-        console.log("props", this.props);
         return (
             <div className="regular-article">
                 <form onSubmit={this.handleSubmitForm} encType="multipart/form-data">
