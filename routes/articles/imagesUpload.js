@@ -7,8 +7,8 @@ router.post('/users/upload', uploader.single("profilePic"), (req, res, next) => 
     // console.log('file is: ', req.file)
 
     if (!req.file) {
-        res.status(400).json({message: "No file uploaded!"});
-        return;
+      res.status(400).json({message: "No file uploaded!"});
+      return;
     };
 
     res.json({ secure_url: req.file.secure_url });
@@ -19,7 +19,7 @@ router.post('/articles/upload', uploader.single("picFeatured"), (req, res, next)
     console.log('file is: ', req.file)
 
     if (!req.file) {
-      next(new Error('No file uploaded!'));
+      res.status(400).json({message: "No file uploaded!"});
       return;
     }
     // get secure_url from the file object and save it in the 

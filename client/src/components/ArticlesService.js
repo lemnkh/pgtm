@@ -6,6 +6,7 @@ class ArticlesService {
             withCredentials: true
     });
 
+    // file upload
     uploadPicFeatured = (pic) => {
         return this.service.post('/articles/upload', pic)
           .then(response => response.data)
@@ -16,34 +17,52 @@ class ArticlesService {
           .then(response => response.data)
     };
 
+    // create article
     newArticle = (title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags) => {
         return this.service.post('/articles', {title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags})
         .then(response => response.data)
     };
 
+    newPlaylist = (title, overview, picFeatured, picCaption, picCredit, picPlaylist, playlistSpotify, playlistDeezer, playlistYoutube, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags) => {
+        return this.service.post('/playlists', {title, overview, picFeatured, picCaption, picCredit, picPlaylist, playlistSpotify, playlistDeezer, playlistYoutube, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags})
+        .then(response => response.data)
+    };
+
+    // edit article
     getArticle = (id) => {
         return this.service.get('/articles/' + id).then(response => response.data)
+    };
+
+    getPlaylist = (id) => {
+        return this.service.get('/playlists/' + id).then(response => response.data)
+    };
+
+    updatePlaylist = (id, title, overview, picFeatured, picCaption, picCredit, picPlaylist, playlistSpotify, playlistDeezer, playlistYoutube, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags) => {
+        return this.service.put('/playlists/' + id, {title, overview, picFeatured, picCaption, picCredit, picPlaylist, playlistSpotify, playlistDeezer, playlistYoutube, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags}).then(response => response.data)
     };
 
     updateArticle = (id, title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags) => {
         return this.service.put('/articles/' + id, {title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags}).then(response => response.data)
     };
 
+    // delete article
     deleteArticle = (id) => {
         return this.service.delete('/articles/' + id).then(response => response.data)
     };
 
+    deletePlaylist = (id) => {
+        return this.service.delete('/playlists/' + id).then(response => response.data)
+    };
+
+    // all articles private
     allArticlesUser = () => {
         return this.service.get('/user/articles').then(response => response.data)
     };
 
-    allArticles = () => {
-        return this.service.get('/articles').then(response => response.data)
+    allPlaylistsUser = () => {
+        return this.service.get('/user/playlists').then(response => response.data)
     };
 
-    latestArticle = () => {
-        return this.service.get('/latest').then(response => response.data)
-    }
 }
 
 export default ArticlesService;

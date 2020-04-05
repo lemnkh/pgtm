@@ -17,7 +17,7 @@ class EditRegularArticle extends React.Component {
         // articleContent: "", /* contenu de l'article */
         // lang: "", /* langue pour filtrer plus tard */
         // cat: "", /* catégorie */
-        // lang: "french",
+        // lang: "🇫🇷",
         // cat: "Nouveaux artistes"
         // tags: "",
     };
@@ -66,38 +66,35 @@ class EditRegularArticle extends React.Component {
 
     handleSubmitForm = (event) => {
         event.preventDefault();
-        const {title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags} = this.state.article;
 
+        if (!this.state.picFeatured) return;
+        
+        const {title, overview, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags} = this.state.article;
+        const picFeatured = this.state.picFeatured;
         // on fait appel à l'instance du service spé articles
         this.service.updateArticle(this.props.match.params.id, title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags)
             .then(response => {
-                // on reset le form : est-ce que je le garde la modif ???
-                // this.setState({
-                //     title: "",
-                //     overview: "", /* résumé de l'article */
-                //     picFeatured: "", /* image de Une */
-                //     picCaption: "", /* légende image de Une */
-                //     picCredit: "", /* crédit image de Une */
-                //     author: "",
-                //     authorTwitter: "",
-                //     authorIG: "",
-                //     chapo: "",
-                //     articleContent: "", /* contenu de l'article */
-                //     lang: "french",
-                //     cat: "Nouveaux artistes",
-                //     tags: ""
-                // });
-
-                // calling the parent
-                // do I really need this bit????
-                // this.props.addTheArticle(this.state);
                 
                 // redirect
                 this.props.history.push('/pgtm/admin/articles');
 
-                console.log("ok", response)
+                console.log("DURING UPDATE", this.state.article.picFeatured)
             })
             .catch(error => console.log(error))    
+    };
+
+    handleUpload = (event) => {
+        const uploadData = new FormData();
+        uploadData.append("picFeatured", event.target.files[0]);
+        
+        this.service.uploadPicFeatured(uploadData)
+            .then(response => {
+                this.setState({ picFeatured: response.secure_url });
+                console.log("dans then upload", this.state.picFeatured)
+            })
+            .catch(err => {
+                console.log("Error while uploading the file: ", err);
+            })
     };
 
     render() {
@@ -135,20 +132,17 @@ class EditRegularArticle extends React.Component {
             
 
                 
-                    {/* <label>
+                    <label>
                         <div className="field">
                         <div className="field-name">Featured picture:</div>
                         <div className="field-content">
                             <input
                             type="file"
                             name="picFeatured"
-                            value={this.state.article.picFeatured}
-                            onChange={(e) => this.handleChange(e)} />
+                            onChange={(e) => this.handleUpload(e)} />
                         </div>
                         </div>
                     </label>
-             */}
-
                 
                     <label>
                         <div className="field">
@@ -262,22 +256,22 @@ class EditRegularArticle extends React.Component {
                             <input
                             type="radio"
                             name="language"
-                            value="french"
-                            checked={this.state.article.lang === "french"}
+                            value="🇫🇷"
+                            checked={this.state.article.lang === "🇫🇷"}
                             onChange={this.handleOptionChange}
                             className="form-check-input"
                             />
-                            french
+                            🇫🇷
 
                             <input
                             type="radio"
                             name="language"
-                            value="english"
-                            checked={this.state.article.lang === "english"}
+                            value="🇬🇧"
+                            checked={this.state.article.lang === "🇬🇧"}
                             onChange={this.handleOptionChange}
                             className="form-check-input"
                             />
-                            english
+                            🇬🇧
                         </div>
                         </div>
                     </label>

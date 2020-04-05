@@ -3,7 +3,6 @@
   }
   
   body {
-    padding: 20px;
     font: 14px Arial, sans-serif;
   }
   
@@ -24,8 +23,15 @@
   
   ul {
     list-style-type: none;
+    margin: 0px!important;
+    padding: 0px!important
    }
   
+  li {
+    list-style-type: none;
+    margin: 0px!important;
+    padding: 0px!important
+   }
   /********** INDEX **********/
   
   header {
@@ -136,9 +142,9 @@
   
   button {
     background-color: #00B7FF;
-    padding: 8px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 6px;
+    padding-left: 13px;
+    padding-right: 13px;
     border-radius: 40px;
     -moz-border-radius: 40px;
     -webkit-border-radius: 40px;
@@ -176,15 +182,21 @@
   /********** ARTICLE **********/ 
   
   /********** ALL ARTICLES **********/
+ 
+
   .all-articles {
     margin-top: 110px;
+    width: 100%;
   }
   
   .all-articles ul li {
     display: flex;
+    justify-content: center;
     width: 100%;
     margin-top: 3px;
     font-size: 15px;
+    margin-left: 0px!important;
+    padding-left: 0px!important;
   }
   
   .title-top {
@@ -197,7 +209,7 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
-    width: 37.3%;
+    width: 33.3%;
     text-align: center;
   }
   
@@ -212,7 +224,7 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
-    width: 15%;
+    width: 10%;
     text-align: center;
   }
   
@@ -244,21 +256,21 @@
     background-color: #eeeeee;
     padding: 8px;
     font-weight: bold;
-    width: 37.3%;
+    width: 33.3%;
   }
   
   .author {
     background-color: #eeeeee;
     padding: 8px;
     font-weight: bold;
-    width: 15%;
+    width: 10%;
     text-align: center;
   }
   
   .date {
     background-color: #eeeeee;
     padding: 8px;
-    width: 20%;
+    width: 19.5%;
     text-align: center;
   }
   
@@ -278,6 +290,8 @@
   
   .nav-left {
     width: 15%;
+    display: flex;
+    align-items: center;
   }
   
   .nav-middle {
@@ -290,14 +304,6 @@
     width: 15%;
     display: flex;
     justify-content: flex-end;
-  }
-  
-  .profile-pic-nav {
-    height: 80px;
-    width: 80px;
-    border-radius: 80px;
-    -webkit-border-radius: 80px;
-    -moz-border-radius: 80px;
   }
   
   h1 {

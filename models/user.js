@@ -6,7 +6,8 @@ const userSchema = new Schema({
   email:    String,
   password: String,
   profilePic: String,
-  articles: [{type: Schema.Types.ObjectId, ref: 'Article'}]
+  articles: [{type: Schema.Types.ObjectId, ref: 'Article'}],
+  playlists: [{type: Schema.Types.ObjectId, ref: 'Playlist'}]
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });

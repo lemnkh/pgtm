@@ -15,8 +15,8 @@ router.get('/user/articles', function (req, res, next) {
       .populate('articles')
       .then((user) => {
         const articlesMod = user.articles.map(article => {
-          article.updatedAt = moment(article.updated_at).format("DD/MM/YYYY at h:mm:ss a");
-          article.createdAt = moment(article.created_at).format("DD/MM/YYYY at h:mm:ss a");
+          article.updatedAt = moment(article.updated_at).format("DD/MM/YYYY h:mm:ss a");
+          article.createdAt = moment(article.created_at).format("DD/MM/YYYY h:mm:ss a");
           console.log("coucou je suis passé par le then");
           return article;
         });
@@ -39,12 +39,8 @@ router.get('/user/articles', function (req, res, next) {
   // find tout seul
 
 
-  router.get('/articles', function (req, res, next) {
-    if (!req.user) {
-      res.status(401).json({message: "You have to log in to view your articles"})
-      return;
-    }
-    Article.find()
+  router.get('/articles/all', function (req, res, next) {
+    Article.find().sort({_id:-1})
         .then((allArticles) => {
           const allArticlesMod = allArticles.map(article => {
             article.updatedAt = moment(article.updated_at).format("dddd, MMMM Do YYYY at h:mm a");

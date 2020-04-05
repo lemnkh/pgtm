@@ -1,18 +1,11 @@
 import React from 'react';
 import Layout from '../(f)components/Layout';
+import HomeFeed from '../(f)components/HomeFeed';
+import HomePlaylists from '../(f)components/HomePlaylists';
 import PublicService from '../components/PublicService';
+import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
-  // state = {
-  //   selected: "french"
-  // }
-
-  // handleOptionChange = (changeEvent) => {
-  //   this.setState({
-  //     selected: changeEvent.target.value
-  //   })
-  // }
-
   state = {
     latest: [{}] // faut déclarer objet dans tableau parce que c'est le type de réponse que l'on reçoit dans latestArticle
     // le componentDidMount est un second render donc faut que le type vide dans le state match ce avec quoi on va remplir
@@ -31,15 +24,45 @@ class Home extends React.Component {
       .catch(err => console.log(err))
   }
 
-  render() {
+  render() {  
     return (
-        <div className="App">
-            <Layout>
-               
-            <img src={this.state.latest[0].featuredPic} alt="featured" />
-            {this.state.latest[0].title}
-            </Layout>
+        
+      <Layout>
+      {/* <div className="separator"></div>    */}
+      <div className="latest">
+        <Link to={"/" + this.state.latest[0]._id}><img src={this.state.latest[0].picFeatured} alt="latest article" className="latest-pic" /></Link>
+
+        <div className="latest-info">
+          <span className="label-article">Latest article</span>
+          <div className="latest-overview">
+            <span className="latest-title">{this.state.latest[0].title}<br/></span>
+          </div>
         </div>
+      </div>
+
+      <div className="latest-subtitle">{this.state.latest[0].overview}</div>
+
+      <div className="section">
+        <div className="center">
+          <span className="section-title">The Feed</span>
+
+          <HomeFeed />
+
+          <div className="more-link">+ <Link to="/articles/all">all articles</Link></div>
+          </div>
+      </div>
+      <div className="section-bis">
+        <div className="center">
+          <span className="section-title">The Playlists</span>
+
+          <HomePlaylists />
+
+          <div className="more-link">+ <Link to="/playlists">all playlists</Link></div>
+        </div>
+      </div>
+
+      </Layout>
+      
     );
   }
 }

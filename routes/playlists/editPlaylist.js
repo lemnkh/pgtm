@@ -1,21 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const Article = require('../../models/article.js');
+const Playlist = require('../../models/playlist.js');
 const User = require('../../models/user.js');
 const mongoose     = require('mongoose');
 
-// on trouve l'article pour pouvoir l'afficher
-router.put("/articles/:id", (req, res, next) => {
+// on trouve la playlist pour pouvoir l'afficher
+router.put("/playlists/:id", (req, res, next) => {
     if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
         res.status(400).json({ message: 'Specified id is not valid' });
         return;
     };
     
-    const article = req.body;
+    const playlist = req.body;
     
-    Article.update({_id: req.params.id}, {$set: article})
-        .then((artic) => {
-            res.json(artic);
+    Playlist.update({_id: req.params.id}, {$set: playlist})
+        .then((play) => {
+            res.json(play);
         })
         .catch((err) => {
             next(err);

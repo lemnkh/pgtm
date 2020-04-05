@@ -7,11 +7,19 @@ class PublicService {
     });
 
     getArticle = (id) => {
-        return this.service.get('/articles/' + id).then(response => response.data)
+        return this.service.get('/articles/published/' + id).then(response => response.data)
     };
 
     allArticles = () => {
-        return this.service.get('/articles').then(response => response.data)
+        return this.service.get('/articles/all').then(response => response.data)
+    };
+
+    getPlaylist = (id) => {
+        return this.service.get('/playlists/published/' + id).then(response => response.data)
+    };
+
+    allPlaylists = () => {
+        return this.service.get('/playlists/all').then(response => response.data)
     };
 
     latestArticle = () => {

@@ -2,6 +2,7 @@ import React from 'react';
 import ArticlesService from '../components/ArticlesService';
 import AuthService from '../components/AuthService';
 import OneArticle from './OneArticle';
+import OnePlaylist from './OnePlaylist';
 import {Link} from 'react-router-dom';
 import '../Back.css';
 
@@ -9,7 +10,8 @@ class ListOfArticles extends React.Component {
     state = {
         name: "",
         profilePic: "",
-        articles: []
+        articles: [],
+        playlists: []
     };
 
     service = new ArticlesService();
@@ -25,6 +27,10 @@ class ListOfArticles extends React.Component {
         this.service.allArticlesUser()
             .then((name, profilePic, articles) => this.setState(name, profilePic, articles))
             .catch(error => console.log(error))
+        
+        this.service.allPlaylistsUser()
+            .then((playlists) => this.setState(playlists))
+            .catch(error => console.log(error))
     };
 
     logout = () => {
@@ -32,6 +38,7 @@ class ListOfArticles extends React.Component {
           .then(response => {
             this.props.updateUser(false);
             console.log("logout", response)
+            this.props.history.push('/pgtm/admin/articles');
           })
           .catch(error => console.log(error))
         ;
@@ -42,7 +49,7 @@ class ListOfArticles extends React.Component {
         console.log("state:", this.state);
         return (
 
-              <div>
+              <div className="list-of-articles">
                     <div className="nav-bar">
                         <div className="nav-left">
                             <button>
@@ -58,8 +65,10 @@ class ListOfArticles extends React.Component {
                         </div>
 
                         <div className="nav-right">
-                            <div className="profile-pic-nav" style={{background: "url("+ this.state.profilePic + ")", backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center"}}> 
-                            </div>
+                        <button>
+                                <Link to="/pgtm/admin/playlists/new">New<br/>
+                                playlist</Link>
+                            </button>
                         </div>
                     </div>
 
@@ -70,7 +79,7 @@ class ListOfArticles extends React.Component {
                         <div className="author-top">Author</div>
                         <div className="date-top">Time of creation</div>
                         <div className="date-top">Last update</div>
-                        <div className="action-top">E D</div>
+                        <div className="action-top">E D L</div>
                         </li>
 
                         {this.state.articles.map(state => {
@@ -78,7 +87,18 @@ class ListOfArticles extends React.Component {
 
                             return(
                                 
-                                <OneArticle key={state._id} id={state._id} title={state.title} author={state.author} createdAt={state.createdAt} updatedAt={state.updatedAt}  />
+                                <OneArticle key={state._id} id={state._id} title={state.title} author={state.author} createdAt={state.created_at} updatedAt={state.updated_at}  />
+                                
+                            )
+                            })
+                        }
+
+                        {this.state.playlists.map(state => {
+                            console.log(state);
+
+                            return(
+                                
+                                <OnePlaylist key={state._id} id={state._id} title={state.title} author={state.author} createdAt={state.created_at} updatedAt={state.updated_at}  />
                                 
                             )
                             })

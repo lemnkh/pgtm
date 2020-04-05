@@ -135,6 +135,14 @@ app.use('/api', require('./routes/articles/show.js')); // GET voir l'article, sa
 
 app.use('/api', require('./routes/articles/queries.js')); // GET info pour homepage
 
+app.use('/api', require('./routes/playlists/newPlaylist.js')); // POST nouvel article-playlist
+app.use('/api', require('./routes/playlists/editPlaylist.js')); // PUT éditer un article-playlist
+app.use('/api', require('./routes/playlists/deletePlaylist.js')); // DELETE un article-playlist
+
+app.use('/api', require('./routes/playlists/allPlaylists.js')); // GET toutes les playlists
+
+app.use('/api', require('./routes/playlists/showPlaylist.js')); // GET voir playlist, sans être un user
+
 /* IMAGE UPLOAD ROUTE */
 
 app.use('/api', require('./routes/articles/imagesUpload.js'));

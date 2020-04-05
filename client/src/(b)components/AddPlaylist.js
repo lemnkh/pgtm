@@ -2,13 +2,17 @@ import React from 'react';
 import ArticlesService from '../components/ArticlesService';
 import '../Back.css';
 
-class AddRegularArticle extends React.Component {
+class AddPlaylist extends React.Component {
     state = {
         title: "",
         overview: "", /* résumé de l'article */
         picFeatured: "", /* image de Une */
         picCaption: "", /* légende image de Une */
         picCredit: "", /* crédit image de Une */
+        picPlaylist: "", /* SI PLAYLIST, image */
+        playlistSpotify: "", /* SI PLAYLIST */
+        playlistDeezer: "", /* SI PLAYLIST */
+        playlistYoutube: "", /* SI PLAYLIST */
         author: "",
         authorTwitter: "",
         authorIG: "",
@@ -48,18 +52,18 @@ class AddRegularArticle extends React.Component {
             })
     };
 
-    // handleUploadPlaylist = (event) => {
-    //     let formData = new FormData();
-    //     formData.append('photo', event.target.files[0]);
+    handleUploadPlaylist = (event) => {
+        let formData = new FormData();
+        formData.append("picPlaylist", event.target.files[0]);
     
-    //     this.service.uploadPicPlaylist(formData)
-    //       .then(response => {
-    //           this.setState({ picPlaylist: response.secure_url });
-    //       })
-    //       .catch(err => {
-    //         console.log("Error while uploading the file: ", err);
-    //         })
-    // };
+        this.service.uploadPicPlaylist(formData)
+          .then(response => {
+              this.setState({ picPlaylist: response.secure_url });
+          })
+          .catch(err => {
+            console.log("Error while uploading the file: ", err);
+            })
+    };
 
     handleOptionChange = (changeEvent) => {
         this.setState({
@@ -76,13 +80,15 @@ class AddRegularArticle extends React.Component {
     handleSubmitForm = (event) => {
         event.preventDefault();
 
-        if (!this.state.picFeatured) return;
+        if (!this.state.picPlaylist) return;
 
-        const {title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags} = this.state;
+        const {title, overview, picFeatured, picCaption, picCredit, picPlaylist, playlistSpotify, playlistDeezer, playlistYoutube, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags} = this.state;
         console.log(title);
 
+        console.log("submit");
+
         // on fait appel à l'instance du service spé articles
-        this.service.newArticle(title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags)
+        this.service.newPlaylist(title, overview, picFeatured, picCaption, picCredit, picPlaylist, playlistSpotify, playlistDeezer, playlistYoutube, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags)
             .then(response => {
                 // on reset le form
                 this.setState({
@@ -91,19 +97,19 @@ class AddRegularArticle extends React.Component {
                     picFeatured: "", /* image de Une */
                     picCaption: "", /* légende image de Une */
                     picCredit: "", /* crédit image de Une */
+                    picPlaylist: "", /* SI PLAYLIST, image */
+                    playlistSpotify: "", /* SI PLAYLIST */
+                    playlistDeezer: "", /* SI PLAYLIST */
+                    playlistYoutube: "", /* SI PLAYLIST */
                     author: "",
                     authorTwitter: "",
                     authorIG: "",
                     chapo: "",
                     articleContent: "", /* contenu de l'article */
-                    lang: "", /* langue pour filtrer plus tard */
-                    cat: "", /* catégorie */
+                    lang: "🇫🇷",
+                    cat: "Nouveaux artistes",
                     tags: ""
                 });
-
-                // calling the parent
-                // do I really need this bit????
-                //this.props.addTheArticle(this.state);
 
                 this.props.history.push('/pgtm/admin/articles');
             })
@@ -119,7 +125,7 @@ class AddRegularArticle extends React.Component {
         return (
             <div className="regular-article">
                 <form onSubmit={this.handleSubmitForm} encType="multipart/form-data">
-                <p>
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Title:</div>
@@ -132,9 +138,9 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
+                
 
-                <p>
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Overview:</div>
@@ -147,9 +153,9 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
+                
 
-                <p>
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Featured picture:</div>
@@ -161,9 +167,9 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
+                
 
-                <p>
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Caption:</div>
@@ -176,9 +182,9 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
+                
 
-                <p>
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Credit:</div>
@@ -191,9 +197,63 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
 
-                <p>
+
+                    <label>
+                        <div className="field">
+                        <div className="field-name">Playlist cover:</div>
+                        <div className="field-content">
+                            <input
+                            type="file"
+                            name="picPlaylist"
+                            onChange={(e) => this.handleUploadPlaylist(e)} />
+                        </div>
+                        </div>
+                    </label>
+
+
+                    <label>
+                        <div className="field">
+                        <div className="field-name">Playlist on Spotify:</div>
+                        <div className="field-content">
+                            <input
+                            type="text"
+                            name="playlistSpotify"
+                            value={this.state.playlistSpotify}
+                            onChange={(e) => this.handleChange(e)} />
+                        </div>
+                        </div>
+                    </label>
+
+ 
+                    <label>
+                        <div className="field">
+                        <div className="field-name">Playlist on Deezer:</div>
+                        <div className="field-content">
+                            <input
+                            type="text"
+                            name="playlistDeezer"
+                            value={this.state.playlistDeezer}
+                            onChange={(e) => this.handleChange(e)} />
+                        </div>
+                        </div>
+                    </label>
+
+
+                    <label>
+                        <div className="field">
+                        <div className="field-name">Playlist on Youtube:</div>
+                        <div className="field-content">
+                            <input
+                            type="text"
+                            name="playlistYoutube"
+                            value={this.state.playlistYoutube}
+                            onChange={(e) => this.handleChange(e)} />
+                        </div>
+                        </div>
+                    </label>
+
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Author:</div>
@@ -206,9 +266,9 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
+                
 
-                <p>
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Author's Twitter username:</div>
@@ -221,9 +281,9 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
+                
 
-                <p>
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Author's Instagram username:</div>
@@ -236,9 +296,9 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
+                
 
-                <p>
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Lead (chapô):</div>
@@ -251,9 +311,9 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
+                
 
-                <p>
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Article:</div>
@@ -266,9 +326,9 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
+                
 
-                <p>
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Language:</div>
@@ -295,9 +355,9 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
+                
 
-                <p>
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Category:</div>
@@ -334,9 +394,9 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
+                
 
-                <p>
+                
                     <label>
                         <div className="field">
                         <div className="field-name">Tags:</div>
@@ -349,7 +409,7 @@ class AddRegularArticle extends React.Component {
                         </div>
                         </div>
                     </label>
-                </p>
+                
 
                 <center>
                     <button type="submit">Save</button>
@@ -361,4 +421,4 @@ class AddRegularArticle extends React.Component {
 
 }
 
-export default AddRegularArticle;
+export default AddPlaylist;
