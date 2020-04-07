@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthService from '../components/AuthService';
-import '../back.css';
+import '../Back.css';
 
 class Profile extends React.Component {
   state = {

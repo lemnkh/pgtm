@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthService from '../components/AuthService';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+import '../Back.css';
 
 class SignUp extends React.Component {
   state = {

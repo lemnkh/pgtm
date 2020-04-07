@@ -1,6 +1,6 @@
 import React from 'react';
 import ArticlesService from '../components/ArticlesService';
-import '../back.css';
+import '../Back.css';
 
 class AddRegularArticle extends React.Component {
     state = {

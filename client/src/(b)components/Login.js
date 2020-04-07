@@ -1,7 +1,7 @@
 import React from 'react';
 import AuthService from '../components/AuthService';
 import { Link } from 'react-router-dom';
-import '../back.css';
+import '../Back.css';
 
 class Login extends React.Component {
   state = {

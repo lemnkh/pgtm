@@ -17,7 +17,6 @@ import EditPlaylist from './(b)components/EditPlaylist';
 import ListOfArticles from './(b)components/ListOfArticles';
 import { Switch, Route } from 'react-router-dom';
 import AuthService from './components/AuthService';
-import './back.css';
 
 class App extends Component {
 

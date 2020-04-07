@@ -4,7 +4,7 @@ import AuthService from '../components/AuthService';
 import OneArticle from './OneArticle';
 import OnePlaylist from './OnePlaylist';
 import {Link} from 'react-router-dom';
-import '../back.css';
+import '../Back.css';
 
 class ListOfArticles extends React.Component {
     state = {
