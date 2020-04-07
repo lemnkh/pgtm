@@ -8,7 +8,7 @@ class Profile extends React.Component {
       name: "",
       email: "",
       password: "",
-      profilePic: this.props.user.profilePic
+      // profilePic: this.props.user.profilePic
     }
   };
 
@@ -54,7 +54,7 @@ class Profile extends React.Component {
           name: "", 
           email: "",
           password: "",
-          profilePic: this.props.user.profilePic
+          // profilePic: this.props.user.profilePic
         });
 
         // redirect
@@ -75,19 +75,19 @@ class Profile extends React.Component {
     });
     };
 
-  handleUpload = (event) => {
-    const uploadData = new FormData();
-    uploadData.append("profilePic", event.target.files[0]);
+  // handleUpload = (event) => {
+  //   const uploadData = new FormData();
+  //   uploadData.append("profilePic", event.target.files[0]);
     
-    this.service.upload(uploadData)
-        .then(response => {
-            this.setState({ profile: {profilePic: response.secure_url} });
-            console.log("dans then upload", this.state.profilePic)
-        })
-        .catch(err => {
-            console.log("Error while uploading the file: ", err);
-        })
-  };
+  //   this.service.upload(uploadData)
+  //       .then(response => {
+  //           this.setState({ profile: {profilePic: response.secure_url} });
+  //           console.log("dans then upload", this.state.profilePic)
+  //       })
+  //       .catch(err => {
+  //           console.log("Error while uploading the file: ", err);
+  //       })
+  // };
 
   render() {
       console.log("these are the props", this.props.status);
@@ -143,7 +143,7 @@ class Profile extends React.Component {
           
       
           
-            <label>
+            {/* <label>
               <div className="field">
                 <div className="field-name">Profile picture:</div>
                 <div className="field-content">
@@ -153,7 +153,7 @@ class Profile extends React.Component {
                   onChange={(e) => this.handleUpload(e)}/>
                 </div>
               </div>
-            </label>
+            </label> */}
           
       
           <button className="button" type="submit">Save</button>

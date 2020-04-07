@@ -1,14 +1,13 @@
 import React from 'react';
 import AuthService from '../components/AuthService';
 import { Link } from 'react-router-dom'; 
-import '../back.css';
 
 class SignUp extends React.Component {
   state = {
     name: '',
     email: '',
     password: '',
-    profilePic: ''
+    // profilePic: ''
   };
 
   service = new AuthService();
@@ -17,7 +16,7 @@ class SignUp extends React.Component {
     
     event.preventDefault();
 
-    if (!this.state.profilePic) return;
+    // if (!this.state.profilePic) return;
 
     console.log("state avant service.signup", this.state);
 
@@ -35,7 +34,7 @@ class SignUp extends React.Component {
         name: "", 
         email: "",
         password: "",
-        profilePic: ""
+        // profilePic: ""
       });
 
       // redirect
@@ -50,19 +49,19 @@ class SignUp extends React.Component {
     this.setState({[name]: value});
   };
 
-  handleUpload = (event) => {
-    const uploadData = new FormData();
-    uploadData.append("profilePic", event.target.files[0]);
+  // handleUpload = (event) => {
+  //   const uploadData = new FormData();
+  //   uploadData.append("profilePic", event.target.files[0]);
     
-    this.service.upload(uploadData)
-        .then(response => {
-            this.setState({ profilePic: response.secure_url });
-            console.log("dans then upload", this.state.profilePic)
-        })
-        .catch(err => {
-            console.log("Error while uploading the file: ", err);
-        })
-  };
+  //   this.service.upload(uploadData)
+  //       .then(response => {
+  //           this.setState({ profilePic: response.secure_url });
+  //           console.log("dans then upload", this.state.profilePic)
+  //       })
+  //       .catch(err => {
+  //           console.log("Error while uploading the file: ", err);
+  //       })
+  // };
 
   render() {
     return (
@@ -114,7 +113,7 @@ class SignUp extends React.Component {
           
       
           
-            <label>
+            {/* <label>
               <div className="field">
                 <div className="field-name">Profile picture:</div>
                 <div className="field-content">
@@ -123,7 +122,7 @@ class SignUp extends React.Component {
                   onChange={(e) => this.handleUpload(e)}/>
                 </div>
               </div>
-            </label>
+            </label> */}
           
       
           <button className="button" type="submit">Sign up</button>
