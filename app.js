@@ -114,7 +114,7 @@ app.use((err, req, res, next) => {
 
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:3000']
+  origin: ['https://pgtm.herokuapp.com']
 }));
 
 /* ROUTES USER */
