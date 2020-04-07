@@ -29,12 +29,7 @@ class EditRegularArticle extends React.Component {
 
     handleChange = (event) => {  
         const {name, value} = event.target;
-        this.setState({
-            article: {
-                ...this.state.article,
-                [name]: value,
-            }
-        });
+        this.setState({[name]: value});
     };
     
     handleOptionChange = (changeEvent) => {

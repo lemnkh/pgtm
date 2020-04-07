@@ -50,7 +50,7 @@ class ListOfArticles extends React.Component {
         return (
 
               <div className="list-of-articles">
-                    <h1>{this.state.name}</h1>
+                    <h2>{this.state.name}</h2>
                     <div className="nav-bar">
                         <div className="nav-left">
                             <button className="button">

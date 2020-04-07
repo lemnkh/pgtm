@@ -23,12 +23,7 @@ class EditPlaylist extends React.Component {
 
     handleChange = (event) => {  
         const {name, value} = event.target;
-        this.setState({
-            playlist: {
-                ...this.state.playlist,
-                [name]: value,
-            }
-        });
+        this.setState({[name]: value});
     };
     
     handleUpload = (event) => {
