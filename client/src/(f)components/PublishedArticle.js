@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../(f)components/Layout';
 import PublicService from '../components/PublicService';
 import { Link } from 'react-router-dom';
+import '../publishedarticle.css';
 
 class PublishedArticle extends React.Component {
     state = {
@@ -24,8 +25,9 @@ class PublishedArticle extends React.Component {
       const img = {
           width: "11px",
       }
+      
     return (
-        <Layout>
+        <Layout history={this.props.history}>
         {/* <div className="separator"></div>    */}
             <div className="article-top">
                 <div className="article-title">{this.state.article.title}</div>

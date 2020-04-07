@@ -1,6 +1,6 @@
 import React from 'react';
 import ArticlesService from '../components/ArticlesService';
-import '../Back.css';
+import '../back.css';
 
 class EditPlaylist extends React.Component {
     state = {
@@ -402,7 +402,7 @@ class EditPlaylist extends React.Component {
                 
 
                 <center>
-                    <button type="submit">Save</button>
+                    <button className="button" type="submit">Save</button>
                 </center>
                 </form>
             </div>

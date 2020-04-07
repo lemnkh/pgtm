@@ -8,7 +8,7 @@ class Header extends React.Component {
       
       return (
         <div className="header">
-            <Newsletter />
+            <Newsletter history={this.props.history} />
             <Logo />
             <Menu />
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../(f)components/Layout';
 import PublicService from '../components/PublicService';
 import { Link } from 'react-router-dom';
+import '../allarticles.css';
 
 class Articles extends React.Component {
     state ={
@@ -22,25 +23,30 @@ class Articles extends React.Component {
     render() {  
         return (
             
-            <Layout>
+            <Layout history={this.props.history}>
                 {this.state.articles.map(state => {
                     console.log(state);
 
                     return(
-                        <div key={state._id} style={{background: "#000"}}>   
-                            <div style={{textAlign: "left", position: "relative"}}>
-                                <Link to={"/" + state._id}>
-                                    <img src={state.picFeatured} alt={state.title} className="latest-pic" />
-                                    <div className="all-cat"><span>{state.cat} ►</span></div>
-                                    
-                                </Link>
-                            </div>
-                                
-                                <div className="all-title"><span>{state.title}</span></div>
-                            
-                            
-                            <div className="all-overview">{state.overview}</div>
+                        <div>
+                            <div key={state._id} className="all-element">   
+                                <div style={{textAlign: "left", position: "relative"}}>
+                                    <Link to={"/" + state._id}>
+                                        <img src={state.picFeatured} alt={state.title} className="latest-pic" />
+                                    </Link>
+                                </div>
 
+                                <div className="all-title">
+                                    <Link to={"/" + state._id}>
+                                        <span>{state.title}</span>
+                                    </Link>
+                                </div>
+                                    
+                            </div>        
+                            <div className="all-element-bottom">    
+                                <span className="all-cat">{state.cat} ►</span>
+                                <span className="all-overview"> {state.overview}</span>
+                            </div>
                         </div>
                             
                         );

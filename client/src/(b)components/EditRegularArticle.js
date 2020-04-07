@@ -1,25 +1,10 @@
 import React from 'react';
 import ArticlesService from '../components/ArticlesService';
-import '../Back.css';
+import '../back.css';
 
 class EditRegularArticle extends React.Component {
     state = {
         article: {}
-        // title: "",
-        // overview: "", /* résumé de l'article */
-        // picFeatured: "", /* image de Une */
-        // picCaption: "", /* légende image de Une */
-        // picCredit: "", /* crédit image de Une */
-        // author: "",
-        // authorTwitter: "",
-        // authorIG: "",
-        // chapo: "",
-        // articleContent: "", /* contenu de l'article */
-        // lang: "", /* langue pour filtrer plus tard */
-        // cat: "", /* catégorie */
-        // lang: "🇫🇷",
-        // cat: "Nouveaux artistes"
-        // tags: "",
     };
     
     service = new ArticlesService();
@@ -332,7 +317,7 @@ class EditRegularArticle extends React.Component {
             
 
                 <center>
-                    <button type="submit">Save</button>
+                    <button className="button" type="submit">Save</button>
                 </center>
                 </form>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ArticlesService from '../components/ArticlesService';
-import '../Back.css';
+import '../back.css';
 
 class AddRegularArticle extends React.Component {
     state = {
@@ -352,7 +352,7 @@ class AddRegularArticle extends React.Component {
                 </p>
 
                 <center>
-                    <button type="submit">Save</button>
+                    <button className="button" type="submit">Save</button>
                 </center>
                 </form>
             </div>

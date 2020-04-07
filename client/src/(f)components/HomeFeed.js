@@ -1,6 +1,6 @@
 import React from 'react';
 import PublicService from '../components/PublicService';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class HomeFeed extends React.Component {
     state ={
@@ -28,15 +28,17 @@ class HomeFeed extends React.Component {
                     return(
                             
                         <div className="feed-element" key={state._id}>
-                            <div className="feed-left">
-                                
-                                <img src={state.picFeatured} alt={state.title} className="feed-pic-bw" />
-                                
-                            </div>
+                            <Link to={"/" + state._id}>
+                                <div className="feed-left">
+                                    
+                                    <img src={state.picFeatured} alt={state.title} className="feed-pic-bw" />
+                                    
+                                </div>
+                            </Link>
 
                             <div className="feed-right"><span className="feed-cat">{state.cat} ►</span>
                                 <br/>
-                                <span className="feed-title">{state.title}</span>
+                                <Link to={"/" + state._id}><span className="feed-title">{state.title}</span></Link>
                             </div>
                         </div>
                             

@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import TextEditor from './components/TextEditor';
 import Home from './(f)components/Home';
+import About from './(f)components/About';
+import Contact from './(f)components/Contact';
+import Team from './(f)components/Team';
 import PublishedArticle from './(f)components/PublishedArticle';
 import Articles from './(f)components/Articles';
+import Playlists from './(f)components/Playlists';
 import SignUp from './(b)components/SignUp';
 import Login from './(b)components/Login';
 import Profile from './(b)components/Profile';
@@ -65,6 +70,9 @@ class App extends Component {
 
         <Switch>
           <Route exact path='/' component={Home}/>
+
+          <Route exact path='/editor' component={TextEditor}/>
+
           <Route path='/pgtm/admin/signup' render={(props) => <SignUp status={this.state.logged} updateUser={this.updateTheUser} history={props.history} />}/>
           <Route path='/pgtm/admin/login' render={(props) => <Login status={this.state.logged} updateUser={this.updateTheUser} history={props.history} />}/>
           <Route path='/pgtm/admin/profile' render={(props) => <Profile status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
@@ -74,8 +82,13 @@ class App extends Component {
           <Route exact path='/pgtm/admin/playlists/:id' render={(props) => <EditPlaylist status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
           <Route exact path='/pgtm/admin/articles' render={(props) => <ListOfArticles status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} />}/>
 
+          <Route exact path='/about' component={About}/>
+          <Route exact path='/contact' component={Contact}/>
+          <Route exact path='/team' component={Team}/>
+          
           <Route exact path='/:id' render={(props) => <PublishedArticle status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
           <Route exact path='/articles/all' render={(props) => <Articles status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
+          <Route exact path='/playlists/all' render={(props) => <Playlists status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
         </Switch>
 
       </div>

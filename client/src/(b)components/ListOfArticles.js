@@ -4,7 +4,7 @@ import AuthService from '../components/AuthService';
 import OneArticle from './OneArticle';
 import OnePlaylist from './OnePlaylist';
 import {Link} from 'react-router-dom';
-import '../Back.css';
+import '../back.css';
 
 class ListOfArticles extends React.Component {
     state = {
@@ -52,7 +52,7 @@ class ListOfArticles extends React.Component {
               <div className="list-of-articles">
                     <div className="nav-bar">
                         <div className="nav-left">
-                            <button>
+                            <button className="button">
                                 <Link to="/pgtm/admin/articles/new">New<br/>
                                 article</Link>
                             </button>
@@ -65,7 +65,7 @@ class ListOfArticles extends React.Component {
                         </div>
 
                         <div className="nav-right">
-                        <button>
+                        <button className="button">
                                 <Link to="/pgtm/admin/playlists/new">New<br/>
                                 playlist</Link>
                             </button>

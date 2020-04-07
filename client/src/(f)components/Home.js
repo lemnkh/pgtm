@@ -4,6 +4,7 @@ import HomeFeed from '../(f)components/HomeFeed';
 import HomePlaylists from '../(f)components/HomePlaylists';
 import PublicService from '../components/PublicService';
 import { Link } from 'react-router-dom';
+import '../homepage.css';
 
 class Home extends React.Component {
   state = {
@@ -27,18 +28,23 @@ class Home extends React.Component {
   render() {  
     return (
         
-      <Layout>
+      <Layout history={this.props.history}>
       {/* <div className="separator"></div>    */}
-      <div className="latest">
-        <Link to={"/" + this.state.latest[0]._id}><img src={this.state.latest[0].picFeatured} alt="latest article" className="latest-pic" /></Link>
+      <Link to={"/" + this.state.latest[0]._id}><div className="latest">
+        
+          <img src={this.state.latest[0].picFeatured} alt="latest article" className="latest-pic" />
+       
 
         <div className="latest-info">
           <span className="label-article">Latest article</span>
           <div className="latest-overview">
-            <span className="latest-title">{this.state.latest[0].title}<br/></span>
+          <Link to={"/" + this.state.latest[0]._id}>
+            <span className="latest-title">{this.state.latest[0].title}</span>
+          </Link>
+          <br/>
           </div>
         </div>
-      </div>
+      </div></Link>
 
       <div className="latest-subtitle">{this.state.latest[0].overview}</div>
 
@@ -57,7 +63,7 @@ class Home extends React.Component {
 
           <HomePlaylists />
 
-          <div className="more-link">+ <Link to="/playlists">all playlists</Link></div>
+          <div className="more-link">+ <Link to="/playlists/all">all playlists</Link></div>
         </div>
       </div>
 

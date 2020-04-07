@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthService from '../components/AuthService';
-import '../Back.css';
+import '../back.css';
 
 class Profile extends React.Component {
   state = {
@@ -156,7 +156,7 @@ class Profile extends React.Component {
             </label>
           
       
-          <button type="submit">Save</button>
+          <button className="button" type="submit">Save</button>
         </form>
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import PublicService from '../components/PublicService';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class HomePlaylists extends React.Component {
     state ={
@@ -28,12 +28,12 @@ class HomePlaylists extends React.Component {
                             
                         <div className="playlist-element" key={state._id}>
                             
-                            <img src={state.picPlaylist} alt={state.title} className="playlist-pic" /><br/>
-                            <span className="playlist-title">{state.title}</span><br/>
+                            <Link to={"/" + state._id}><img src={state.picPlaylist} alt={state.title} className="playlist-pic" /><br/>
+                            <span className="playlist-title">{state.title}</span></Link><br/>
 
-                            <img src="/spotify.png" alt="spotify" className="spotify" /><br />
-                            <img src="/deezer.png" alt="deezer" className="deezer" /><br/>
-                            <img src="/youtube.png" alt="youtube" className="youtube" />
+                            <a href={state.playlistSpotify} rel="noopener" target="_blank"><img src="/spotify.png" alt="spotify" className="spotify" /></a><br />
+                            <a href={state.playlistDeezer} rel="noopener" target="_blank"><img src="/deezer.png" alt="deezer" className="deezer" /></a><br/>
+                            <a href={state.playlistYoutube} rel="noopener" target="_blank"><img src="/youtube.png" alt="youtube" className="youtube" /></a>
                             
                         
 

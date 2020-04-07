@@ -3,21 +3,12 @@ import Header from '../(f)components/Header';
 import Footer from '../(f)components/Footer';
 
 class Layout extends React.Component {
-    // state = {
-    //   selected: "french"
-    // }
-  
-    // handleOptionChange = (changeEvent) => {
-    //   this.setState({
-    //     selected: changeEvent.target.value
-    //   })
-    // }
-  
     render() {
+      console.log("history in layout", this.props.history)
       return (
         <div className="layout">
             <div className="navbar-on-top">
-              <Header />
+              <Header history={this.props.history} />
             </div>
         
             <div className="content-site">{this.props.children}</div>

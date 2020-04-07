@@ -1,6 +1,6 @@
 import React from 'react';
 import ArticlesService from '../components/ArticlesService';
-import '../Back.css';
+import '../back.css';
 
 class AddPlaylist extends React.Component {
     state = {
@@ -124,18 +124,21 @@ class AddPlaylist extends React.Component {
 
         return (
             <div className="regular-article">
+
                 <form onSubmit={this.handleSubmitForm} encType="multipart/form-data">
                 
+                    
                     <label>
                         <div className="field">
-                        <div className="field-name">Title:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Title:</span></div>
+                        
                             <input
                             type="text"
                             name="title"
                             value={this.state.title}
-                            onChange={(e) => this.handleChange(e)} />
-                        </div>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input" />
+                        
                         </div>
                     </label>
                 
@@ -143,14 +146,15 @@ class AddPlaylist extends React.Component {
                 
                     <label>
                         <div className="field">
-                        <div className="field-name">Overview:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Overview:</span></div>
+                        
                             <input
                             type="text"
                             name="overview"
                             value={this.state.overview}
-                            onChange={(e) => this.handleChange(e)} />
-                        </div>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input" />
+                        
                         </div>
                     </label>
                 
@@ -158,13 +162,14 @@ class AddPlaylist extends React.Component {
                 
                     <label>
                         <div className="field">
-                        <div className="field-name">Featured picture:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Featured picture:</span></div>
+                        
                             <input
                             type="file"
                             name="picFeatured"
-                            onChange={this.handleUpload} />
-                        </div>
+                            onChange={this.handleUpload}
+                            class="field-input" />
+                        
                         </div>
                     </label>
                 
@@ -172,14 +177,15 @@ class AddPlaylist extends React.Component {
                 
                     <label>
                         <div className="field">
-                        <div className="field-name">Caption:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Caption:</span></div>
+                        
                             <input
                             type="text"
                             name="picCaption"
                             value={this.state.picCaption}
-                            onChange={(e) => this.handleChange(e)} />
-                        </div>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input" />
+                        
                         </div>
                     </label>
                 
@@ -187,83 +193,89 @@ class AddPlaylist extends React.Component {
                 
                     <label>
                         <div className="field">
-                        <div className="field-name">Credit:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Credit:</span></div>
+                        
                             <input
                             type="text"
                             name="picCredit"
                             value={this.state.picCredit}
-                            onChange={(e) => this.handleChange(e)} />
-                        </div>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input" />
+                        
                         </div>
                     </label>
 
 
                     <label>
                         <div className="field">
-                        <div className="field-name">Playlist cover:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Playlist cover:</span></div>
+                        
                             <input
                             type="file"
                             name="picPlaylist"
-                            onChange={(e) => this.handleUploadPlaylist(e)} />
-                        </div>
+                            onChange={(e) => this.handleUploadPlaylist(e)}
+                            class="field-input" />
+                        
                         </div>
                     </label>
 
 
                     <label>
                         <div className="field">
-                        <div className="field-name">Playlist on Spotify:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Playlist on Spotify:</span></div>
+                        
                             <input
                             type="text"
                             name="playlistSpotify"
                             value={this.state.playlistSpotify}
-                            onChange={(e) => this.handleChange(e)} />
-                        </div>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input" />
+                        
                         </div>
                     </label>
 
  
                     <label>
                         <div className="field">
-                        <div className="field-name">Playlist on Deezer:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Playlist on Deezer:</span></div>
+                        
                             <input
                             type="text"
                             name="playlistDeezer"
                             value={this.state.playlistDeezer}
-                            onChange={(e) => this.handleChange(e)} />
-                        </div>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input" />
+                        
                         </div>
                     </label>
 
 
                     <label>
                         <div className="field">
-                        <div className="field-name">Playlist on Youtube:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Playlist on Youtube:</span></div>
+                        
                             <input
                             type="text"
                             name="playlistYoutube"
                             value={this.state.playlistYoutube}
-                            onChange={(e) => this.handleChange(e)} />
-                        </div>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input" />
+                        
                         </div>
                     </label>
 
                 
                     <label>
                         <div className="field">
-                        <div className="field-name">Author:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Author:</span></div>
+                        
                             <input
                             type="text"
                             name="author"
                             value={this.state.author}
-                            onChange={(e) => this.handleChange(e)} />
-                        </div>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input" />
+                        
                         </div>
                     </label>
                 
@@ -271,14 +283,15 @@ class AddPlaylist extends React.Component {
                 
                     <label>
                         <div className="field">
-                        <div className="field-name">Author's Twitter username:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Author's Twitter username:</span></div>
+                        
                             <input
                             type="text"
                             name="authorTwitter"
                             value={this.state.authorTwitter}
-                            onChange={(e) => this.handleChange(e)} />
-                        </div>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input" />
+                        
                         </div>
                     </label>
                 
@@ -286,14 +299,15 @@ class AddPlaylist extends React.Component {
                 
                     <label>
                         <div className="field">
-                        <div className="field-name">Author's Instagram username:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Author's Instagram username:</span></div>
+                        
                             <input
                             type="text"
                             name="authorIG"
                             value={this.state.authorIG}
-                            onChange={(e) => this.handleChange(e)} />
-                        </div>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input" />
+                        
                         </div>
                     </label>
                 
@@ -301,14 +315,15 @@ class AddPlaylist extends React.Component {
                 
                     <label>
                         <div className="field">
-                        <div className="field-name">Lead (chapô):</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Lead (chapô):</span></div>
+                        
                             <textarea
                             name="chapo"
                             value={this.state.chapo}
-                            onChange={(e) => this.handleChange(e)}>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input">
                             </textarea>
-                        </div>
+                        
                         </div>
                     </label>
                 
@@ -316,14 +331,18 @@ class AddPlaylist extends React.Component {
                 
                     <label>
                         <div className="field">
-                        <div className="field-name">Article:</div>
-                        <div className="field-content">
+                        <div className="field-name">
+                            <span>Article:</span>
+                        </div>
+                        
                             <textarea
                             name="articleContent"
                             value={this.state.articleContent}
-                            onChange={(e) => this.handleChange(e)}>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input"
+                            id="container">
                             </textarea>
-                        </div>
+                        
                         </div>
                     </label>
                 
@@ -331,8 +350,8 @@ class AddPlaylist extends React.Component {
                 
                     <label>
                         <div className="field">
-                        <div className="field-name">Language:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Language:</span></div>
+                        
                             <input
                             type="radio"
                             name="language"
@@ -352,7 +371,7 @@ class AddPlaylist extends React.Component {
                             className="form-check-input"
                             />
                             🇬🇧
-                        </div>
+                        
                         </div>
                     </label>
                 
@@ -360,8 +379,8 @@ class AddPlaylist extends React.Component {
                 
                     <label>
                         <div className="field">
-                        <div className="field-name">Category:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Category:</span></div>
+                        
                             <input
                             type="checkbox"
                             name="cat"
@@ -391,7 +410,7 @@ class AddPlaylist extends React.Component {
                             className="form-check-input"
                             />
                             Concerts
-                        </div>
+                        
                         </div>
                     </label>
                 
@@ -399,20 +418,21 @@ class AddPlaylist extends React.Component {
                 
                     <label>
                         <div className="field">
-                        <div className="field-name">Tags:</div>
-                        <div className="field-content">
+                        <div className="field-name"><span>Tags:</span></div>
+                        
                             <input
                             type="text"
                             name="tags"
                             value={this.state.tags}
-                            onChange={(e) => this.handleChange(e)} />
-                        </div>
+                            onChange={(e) => this.handleChange(e)}
+                            class="field-input" />
+                        
                         </div>
                     </label>
                 
 
                 <center>
-                    <button type="submit">Save</button>
+                    <button type="submit" className="button">Save</button>
                 </center>
                 </form>
             </div>

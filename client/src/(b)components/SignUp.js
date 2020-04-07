@@ -1,7 +1,7 @@
 import React from 'react';
 import AuthService from '../components/AuthService';
 import { Link } from 'react-router-dom'; 
-import '../Back.css';
+import '../back.css';
 
 class SignUp extends React.Component {
   state = {
@@ -126,11 +126,11 @@ class SignUp extends React.Component {
             </label>
           
       
-          <button type="submit">Sign up</button>
+          <button className="button" type="submit">Sign up</button>
       
           <p className="under-submit">
             Do you already have an account?<br/>
-            Awesome, let's get you <Link to="/pgtm/admin/login">logged in</Link>!
+            Awesome, let's get you <Link to="/pgtm/admin/login"><b>logged in</b></Link>!
           </p>
         </form>
       </div>
