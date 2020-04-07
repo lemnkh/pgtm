@@ -9,6 +9,8 @@ class SignUp extends React.Component {
     email: '',
     password: '',
     // profilePic: ''
+    errorMessage: '',
+    displayErr: 'none'
   };
 
   service = new AuthService();
@@ -43,7 +45,11 @@ class SignUp extends React.Component {
       // redirect
       this.props.history.push("/pgtm/admin/articles");
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      this.setState({
+        errorMessage: error.response.data.message,
+        displayErr: 'block'})
+    })
   
   };
 
@@ -131,12 +137,16 @@ class SignUp extends React.Component {
             </label> */}
           
           <button className="button" type="submit">Sign up</button>
-      
-          <p className="under-submit">
-            Do you already have an account?<br/>
-            Awesome, let's get you <Link to="/pgtm/admin/login"><b>logged in</b></Link>!
-          </p>
         </form>
+
+        <div className="under-submit">
+              You already have an account?<br/>
+              You can <b><Link to="/pgtm/admin/login">log in</Link></b>!
+            <center>
+              <div className="error-message" style={{display: this.state.displayErr}}>{this.state.errorMessage}</div>
+            </center>
+        </div>
+
       </div>
     );
   }

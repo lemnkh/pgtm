@@ -28,7 +28,7 @@ class HomePlaylists extends React.Component {
                             
                         <div className="playlist-element" key={state._id}>
                             
-                            <Link to={"/" + state._id}><img src={state.picPlaylist} alt={state.title} className="playlist-pic" /><br/>
+                            <Link to={"/article/" + state._id}><img src={state.picPlaylist} alt={state.title} className="playlist-pic" /><br/>
                             <span className="playlist-title">{state.title}</span></Link><br/>
 
                             <a href={state.playlistSpotify} rel="noopener" target="_blank"><img src="/spotify.png" alt="spotify" className="spotify" /></a><br />

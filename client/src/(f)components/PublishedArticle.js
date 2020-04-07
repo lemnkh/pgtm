@@ -30,7 +30,7 @@ class PublishedArticle extends React.Component {
         <Layout history={this.props.history}>
         {/* <div className="separator"></div>    */}
             <div className="article-top">
-                <div className="article-title">{this.state.article.title}</div>
+                <h1>{this.state.article.title}</h1>
                 <span className="article-cat">{this.state.article.cat}</span>
                 <span>{this.state.created}<br/></span>
             </div>

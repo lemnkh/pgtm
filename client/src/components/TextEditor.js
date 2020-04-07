@@ -74,6 +74,8 @@ class TextEditor extends React.Component {
       }
     }
 
+     console.log("state", this.state);
+
     return (
       <div className="RichEditor-root">
         <BlockStyleControls

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 class PublicService {
     service = axios.create({
-            baseURL: 'https://pgtm.herokuapp.com/api',
+            baseURL: `${process.env.REACT_APP_APIURL || ''}/api`,
             withCredentials: false
     });
 

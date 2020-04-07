@@ -28,7 +28,7 @@ class HomeFeed extends React.Component {
                     return(
                             
                         <div className="feed-element" key={state._id}>
-                            <Link to={"/" + state._id}>
+                            <Link to={"/article/" + state._id}>
                                 <div className="feed-left">
                                     
                                     <img src={state.picFeatured} alt={state.title} className="feed-pic-bw" />
@@ -38,7 +38,7 @@ class HomeFeed extends React.Component {
 
                             <div className="feed-right"><span className="feed-cat">{state.cat} ►</span>
                                 <br/>
-                                <Link to={"/" + state._id}><span className="feed-title">{state.title}</span></Link>
+                                <Link to={"/article/" + state._id}><span className="feed-title">{state.title}</span></Link>
                             </div>
                         </div>
                             

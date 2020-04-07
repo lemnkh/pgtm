@@ -24,7 +24,7 @@ router.post("/signup", (req, res, next) => {
 
   // on vérifie que les champs obligatoires ne sont pas vides 
   if (req.body.name === "" || req.body.password === "" || req.body.email === "") {
-    res.status(401).json({ message: "Hold on there! You need to enter a media name, an email address and a password to register" });
+    res.status(401).json({ message: "Hold on there! You need to enter a name, an email address and a password to register" });
     return;
   }
 
@@ -78,9 +78,16 @@ router.post('/login', (req, res, next) => {
           res.status(500).json({ message: 'Something went wrong, cannot log in' });
           return;
       }
-  
+
+      // on vérifie que les champs obligatoires ne sont pas vides 
+      if (req.body.password === "" || req.body.email === "") {
+        res.status(401).json({ message: "Hold on there! You need to enter an email address and a password" });
+        return;
+      }
+
+      // utilisateur n'existe
       if (!user) {
-          res.status(401).json(failureDetails);
+          res.status(401).json({ message: "Are you sure you're registered? Or maybe you're having trouble remembering your login information... :(" });
           return;
       }
 

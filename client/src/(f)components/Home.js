@@ -30,7 +30,7 @@ class Home extends React.Component {
         
       <Layout history={this.props.history}>
       {/* <div className="separator"></div>    */}
-      <Link to={"/" + this.state.latest[0]._id}><div className="latest">
+      <Link to={"/article/" + this.state.latest[0]._id}><div className="latest">
         
           <img src={this.state.latest[0].picFeatured} alt="latest article" className="latest-pic" />
        
@@ -38,7 +38,7 @@ class Home extends React.Component {
         <div className="latest-info">
           <span className="label-article">Latest article</span>
           <div className="latest-overview">
-          <Link to={"/" + this.state.latest[0]._id}>
+          <Link to={"/article/" + this.state.latest[0]._id}>
             <span className="latest-title">{this.state.latest[0].title}</span>
           </Link>
           <br/>

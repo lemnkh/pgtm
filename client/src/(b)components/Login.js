@@ -6,7 +6,9 @@ import '../Back.css';
 class Login extends React.Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    errorMessage: '',
+    displayErr: 'none'
   };
 
   service = new AuthService();
@@ -29,7 +31,10 @@ class Login extends React.Component {
       this.props.updateUser(response);
       this.props.history.push("/pgtm/admin/articles");
     })
-    .catch( error => console.log(error) )
+    .catch(error => {
+      this.setState({errorMessage: error.response.data.message,
+        displayErr: 'block'})
+    })
   
   };
 
@@ -41,44 +46,46 @@ class Login extends React.Component {
   render() {
     return (
         <div className="center-page">
-        <form className="center-form" onSubmit={this.handleFormSubmit}>
+          <form className="center-form" onSubmit={this.handleFormSubmit}>
 
-            <label>
-              <div className="field">
-                <div className="field-name"><span>Email:</span></div>
+              <label>
+                <div className="field">
+                  <div className="field-name"><span>Email:</span></div>
+                  
+                    <input
+                    type="text"
+                    name="email" 
+                    value={this.state.email}
+                    onChange={ e => this.handleChange(e)}
+                    class="field-input"/>
+                  </div>
                 
-                  <input
-                  type="text"
-                  name="email" 
-                  value={this.state.email}
-                  onChange={ e => this.handleChange(e)}
-                  class="field-input"/>
+              </label>
+            
+              <label>
+                <div className="field">
+                  <div className="field-name"><span>Password:</span></div>
+                  
+                    <input
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={ e => this.handleChange(e)}
+                    class="field-input"/>
+                  
                 </div>
-              
-            </label>
-          
-            <label>
-              <div className="field">
-                <div className="field-name"><span>Password:</span></div>
-                
-                  <input
-                  type="password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={ e => this.handleChange(e)}
-                  class="field-input"/>
-                
-              </div>
-            </label>
-          
-      
-          <button className="button" type="submit">Log in</button>
-      
-          <p className="under-submit">
-            You don't have an account yet?<br/>
-            You can <b><Link to="/pgtm/admin/signup">sign up</Link></b>.
-          </p>
-        </form>
+              </label>
+              <button className="button" type="submit">Log in</button>
+          </form>
+
+          <div className="under-submit">
+              You don't have an account yet?<br/>
+              You can <b><Link to="/pgtm/admin/signup">sign up</Link></b>.
+            <center>
+              <div className="error-message" style={{display: this.state.displayErr}}>{this.state.errorMessage}</div>
+            </center>
+          </div>
+
       </div>
     );
   }

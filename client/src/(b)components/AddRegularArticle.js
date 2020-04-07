@@ -15,8 +15,9 @@ class AddRegularArticle extends React.Component {
         chapo: "",
         articleContent: "", /* contenu de l'article */
         lang: "🇫🇷",
-        cat: "Nouveaux artistes",
-        tags: ""
+        cat: "New Artists",
+        tags: "",
+        errorMessage: ""
     };
 
     service = new ArticlesService();
@@ -107,7 +108,9 @@ class AddRegularArticle extends React.Component {
 
                 this.props.history.push('/pgtm/admin/articles');
             })
-            .catch(error => console.log(error))    
+            .catch(error => {
+                this.setState({errorMessage: error.response.data.message})
+            })
     };
 
     render() {
@@ -312,7 +315,7 @@ class AddRegularArticle extends React.Component {
                         <div className="field">
                         <div className="field-name"><span>Category:</span></div>
                         
-                            <input
+                            {/* <input
                             type="checkbox"
                             name="cat"
                             value="Nouveaux artistes"
@@ -340,7 +343,47 @@ class AddRegularArticle extends React.Component {
                             onChange={this.handleCheckboxChange}
                             className="form-check-input"
                             />
-                            Concerts
+                            Concerts */}
+
+                            <input
+                            type="checkbox"
+                            name="cat"
+                            value="New Artists"
+                            checked={this.state.cat === "New Artists"}
+                            onChange={this.handleCheckboxChange}
+                            className="form-check-input"
+                            />
+                            New Artists
+
+                            <input
+                            type="checkbox"
+                            name="cat"
+                            value="Meet..."
+                            checked={this.state.cat === "Meet..."}
+                            onChange={this.handleCheckboxChange}
+                            className="form-check-input"
+                            />
+                            Meet...
+
+                            <input
+                            type="checkbox"
+                            name="cat"
+                            value="Gigs"
+                            checked={this.state.cat === "Gigs"}
+                            onChange={this.handleCheckboxChange}
+                            className="form-check-input"
+                            />
+                            Gigs
+
+                            <input
+                            type="checkbox"
+                            name="cat"
+                            value="Industry"
+                            checked={this.state.cat === "Industry"}
+                            onChange={this.handleCheckboxChange}
+                            className="form-check-input"
+                            />
+                            Industry
                         
                         </div>
                     </label>

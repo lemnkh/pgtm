@@ -17,8 +17,14 @@ class EditRegularArticle extends React.Component {
         }
 
         this.service.getArticle(this.props.match.params.id)
-            .then(article => this.setState({article}))
+            .then(article => {
+                this.setState(article)
+                console.log("artic", article)
+                console.log("state", this.state)
+        })
             .catch(error => console.log(error))
+        
+        
     };
 
     handleChange = (event) => {  
@@ -279,7 +285,7 @@ class EditRegularArticle extends React.Component {
                         <div className="field">
                         <div className="field-name"><span>Category:</span></div>
                         
-                            <input
+                            {/* <input
                             type="checkbox"
                             name="cat"
                             value="Nouveaux artistes"
@@ -307,7 +313,47 @@ class EditRegularArticle extends React.Component {
                             onChange={this.handleCheckboxChange}
                             className="form-check-input"
                             />
-                            Concerts
+                            Concerts */}
+
+                            <input
+                            type="checkbox"
+                            name="cat"
+                            value="New Artists"
+                            checked={this.state.cat === "New Artists"}
+                            onChange={this.handleCheckboxChange}
+                            className="form-check-input"
+                            />
+                            New Artists
+
+                            <input
+                            type="checkbox"
+                            name="cat"
+                            value="Meet..."
+                            checked={this.state.cat === "Meet..."}
+                            onChange={this.handleCheckboxChange}
+                            className="form-check-input"
+                            />
+                            Meet...
+
+                            <input
+                            type="checkbox"
+                            name="cat"
+                            value="Gigs"
+                            checked={this.state.cat === "Gigs"}
+                            onChange={this.handleCheckboxChange}
+                            className="form-check-input"
+                            />
+                            Gigs
+
+                            <input
+                            type="checkbox"
+                            name="cat"
+                            value="News"
+                            checked={this.state.cat === "News"}
+                            onChange={this.handleCheckboxChange}
+                            className="form-check-input"
+                            />
+                            News
                         
                         </div>
                     </label>

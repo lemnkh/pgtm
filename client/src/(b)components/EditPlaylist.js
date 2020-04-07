@@ -17,7 +17,7 @@ class EditPlaylist extends React.Component {
         }
 
         this.service.getPlaylist(this.props.match.params.id)
-            .then(playlist => this.setState({playlist}))
+            .then(playlist => this.setState(playlist))
             .catch(error => console.log(error))
     }
 
@@ -359,45 +359,6 @@ class EditPlaylist extends React.Component {
                             className="form-check-input"
                             />
                             🇬🇧
-                        
-                        </div>
-                    </label>
-                
-
-                
-                    <label>
-                        <div className="field">
-                        <div className="field-name"><span>Category:</span></div>
-                        
-                            <input
-                            type="checkbox"
-                            name="cat"
-                            value="Nouveaux artistes"
-                            checked={this.state.cat === "Nouveaux artistes"}
-                            onChange={this.handleCheckboxChange}
-                            className="form-check-input"
-                            />
-                            Nouveaux artistes
-
-                            <input
-                            type="checkbox"
-                            name="cat"
-                            value="Rencontres"
-                            checked={this.state.cat === "Rencontres"}
-                            onChange={this.handleCheckboxChange}
-                            className="form-check-input"
-                            />
-                            Rencontres
-
-                            <input
-                            type="checkbox"
-                            name="cat"
-                            value="Concerts"
-                            checked={this.state.cat === "Concerts"}
-                            onChange={this.handleCheckboxChange}
-                            className="form-check-input"
-                            />
-                            Concerts
                         
                         </div>
                     </label>

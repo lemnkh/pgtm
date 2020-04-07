@@ -31,13 +31,13 @@ class Articles extends React.Component {
                         <div>
                             <div key={state._id} className="all-element">   
                                 <div style={{textAlign: "left", position: "relative"}}>
-                                    <Link to={"/" + state._id}>
+                                    <Link to={"/article/" + state._id}>
                                         <img src={state.picFeatured} alt={state.title} className="latest-pic" />
                                     </Link>
                                 </div>
 
                                 <div className="all-title">
-                                    <Link to={"/" + state._id}>
+                                    <Link to={"/article/" + state._id}>
                                         <span>{state.title}</span>
                                     </Link>
                                 </div>

@@ -50,6 +50,7 @@ class ListOfArticles extends React.Component {
         return (
 
               <div className="list-of-articles">
+                    <h1>{this.state.name}</h1>
                     <div className="nav-bar">
                         <div className="nav-left">
                             <button className="button">
@@ -57,11 +58,9 @@ class ListOfArticles extends React.Component {
                                 article</Link>
                             </button>
                         </div>
-
                         <div className="nav-middle">
-                            <h1>{this.state.name}</h1>
                             <h3>{this.state.articles.length} articles</h3>
-                            <p className="links-nav"><Link to="/pgtm/admin/profile">Edit profile</Link> - <span onClick={this.logout}><Link to="/">Log out</Link></span></p>
+                            <span className="links-nav"><Link to="/pgtm/admin/profile">Edit profile</Link> - <span onClick={this.logout}><Link to="/">Log out</Link></span></span>
                         </div>
 
                         <div className="nav-right">
@@ -74,13 +73,7 @@ class ListOfArticles extends React.Component {
 
                     <div className="all-articles">
                     <ul>
-                        <li>
-                        <div className="title-top">Title</div>
-                        <div className="author-top">Author</div>
-                        <div className="date-top">Time of creation</div>
-                        <div className="date-top">Last update</div>
-                        <div className="action-top">E D L</div>
-                        </li>
+                        <li className="articles-top"></li>
 
                         {this.state.articles.map(state => {
                             console.log(state);
@@ -104,15 +97,7 @@ class ListOfArticles extends React.Component {
                             })
                         }
 
-                        {/* répète
-                        <li>
-                        <div className="title"><Link to="/article/edit/{{_id}}">{{title}}</Link></div>
-                        <div className="author">{{author}}</div>
-                        <div className="date">{{createdAt}}</div>
-                        <div className="date">{{updatedAt}}</div>
-                        <div className="action"><Link to="/article/edit/{{_id}}">E</Link> <Link to="/article/delete-article/{{_id}}">D</Link></div>
-                        </li>
-                    */}
+                    <li className="articles-bottom"></li>
                     </ul>
                     </div>
                 </div>
