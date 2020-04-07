@@ -45,27 +45,29 @@ class Login extends React.Component {
 
             <label>
               <div className="field">
-                <div className="field-name">Email:</div>
-                <div className="field-content">
+                <div className="field-name"><span>Email:</span></div>
+                
                   <input
                   type="text"
                   name="email" 
                   value={this.state.email}
-                  onChange={ e => this.handleChange(e)}/>
+                  onChange={ e => this.handleChange(e)}
+                  class="field-input"/>
                 </div>
-              </div>
+              
             </label>
           
             <label>
               <div className="field">
-                <div className="field-name">Password:</div>
-                <div className="field-content">
+                <div className="field-name"><span>Password:</span></div>
+                
                   <input
                   type="password"
                   name="password"
                   value={this.state.password}
-                  onChange={ e => this.handleChange(e)}/>
-                </div>
+                  onChange={ e => this.handleChange(e)}
+                  class="field-input"/>
+                
               </div>
             </label>
           

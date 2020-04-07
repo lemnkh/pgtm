@@ -101,7 +101,6 @@ header {
 .field-name {
   margin-right: 8px;
   margin-bottom: 8px;
-  
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -167,7 +166,7 @@ textarea {
   margin: 5px;
   text-align: center;
   color: white;
-  font-size: 15px;
+  font-size: 15px!important;
   font-family: arial;
   font-weight: bold;
   text-transform: uppercase;

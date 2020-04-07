@@ -107,7 +107,8 @@ class Profile extends React.Component {
                   type="text"
                   name="name"
                   value={this.state.profile.name}
-                  onChange={ e => this.handleChange(e)}/>
+                  onChange={ e => this.handleChange(e)}
+                  class="field-input"/>
                 </div>
               </div>
             </label>
@@ -122,7 +123,8 @@ class Profile extends React.Component {
                   type="text"
                   name="email" 
                   value={this.state.profile.email}
-                  onChange={ e => this.handleChange(e)}/>
+                  onChange={ e => this.handleChange(e)}
+                  class="field-input"/>
                 </div>
               </div>
             </label>
@@ -136,7 +138,8 @@ class Profile extends React.Component {
                   <input
                   type="password"
                   name="password"
-                  onChange={ e => this.handleChange(e)}/>
+                  onChange={ e => this.handleChange(e)}
+                  class="field-input"/>
                 </div>
               </div>
             </label>
