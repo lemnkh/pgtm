@@ -39,7 +39,7 @@ class OnePlaylist extends React.Component {
                     </div>
 
                     <div className="action">
-                        <Link to={`/pgtm/admin/playlists/${this.props.id}`}><img src="/edit.png" alt="EDIT" style={{width: "16px"}}/></Link> <Link to="/pgtm/admin/playlists/" onClick={this.delete}><img src="/delete.png" alt="DELETE" style={{width: "16px"}}/></Link> <Link to={"/article/" + this.props.id}><img src="/live.png" alt="SEE ON WEBSITE" style={{width: "16px"}}/></Link>
+                        <Link to={`/pgtm/admin/playlists/${this.props.id}`}><img src="/edit.png" alt="EDIT" style={{width: "16px"}}/></Link> <Link to="/pgtm/admin/playlists/" onClick={this.delete}><img src="/delete.png" alt="DELETE" style={{width: "16px"}}/></Link> <Link to={"/playlist/" + this.props.id}><img src="/live.png" alt="SEE ON WEBSITE" style={{width: "16px"}}/></Link>
                     </div>
                 </li>
                 <li className="sep-articles">

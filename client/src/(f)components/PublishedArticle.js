@@ -35,7 +35,7 @@ class PublishedArticle extends React.Component {
                 <span>{this.state.created}<br/></span>
             </div>
             
-            <div className="article-lead">{this.state.article.lead}</div>
+            <div className="article-lead">{this.state.article.chapo}</div>
 
             <div className="article-featured-caption">
                 <img src={this.state.article.picFeatured} alt={this.state.article.picCaption} className="article-featured-pic" />

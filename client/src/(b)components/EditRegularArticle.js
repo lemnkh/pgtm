@@ -338,12 +338,12 @@ class EditRegularArticle extends React.Component {
                             <input
                             type="checkbox"
                             name="cat"
-                            value="News"
-                            checked={this.state.cat === "News"}
+                            value="Industry"
+                            checked={this.state.cat === "Industry"}
                             onChange={this.handleCheckboxChange}
                             className="form-check-input"
                             />
-                            News
+                            Industry
                         
                         </div>
                     </label>
