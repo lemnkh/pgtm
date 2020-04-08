@@ -32,7 +32,7 @@ router.get("/playlists/published/:id", (req, res, next) => {
     };
     
     Playlist.findById(req.params.id)
-        .then((artic) => {
+        .then((play) => {
             res.json({
                 playlist: play,
                 created: moment(play.created_at).format("MMMM Do, YYYY — h:mm a"),

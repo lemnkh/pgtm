@@ -55,19 +55,13 @@ class EditPlaylist extends React.Component {
 
     handleOptionChange = (changeEvent) => {
         this.setState({
-            playlist: {
-                ...this.state.playlist, // needed pour qu'il garde ce qui est déjà saisi sinon il remplacera le state juste par le article: {selectedLang: blabla}
-                lang: changeEvent.target.value
-            }
+            lang: changeEvent.target.value
         })
     };
 
     handleCheckboxChange = (changeEvent) => {
         this.setState({
-            playlist: {
-                ...this.state.playlist,
-                cat: changeEvent.target.value
-            }
+            cat: changeEvent.target.value
         })
     };
 
@@ -80,17 +74,17 @@ class EditPlaylist extends React.Component {
         if (this.state.picFeatured) {
             picFeatured = this.state.picFeatured;
         } else {
-            picFeatured = this.state.playlist.picFeatured
+            picFeatured = this.state.picFeatured
         }
 
         var picPlaylist = "";
         if (this.state.picPlaylist) {
             picPlaylist = this.state.picPlaylist;
         } else {
-            picPlaylist = this.state.playlist.picPlaylist
+            picPlaylist = this.state.picPlaylist
         }
 
-        const {title, overview, picCaption, picCredit, playlistSpotify, playlistDeezer, playlistYoutube, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags} = this.state.playlist;
+        const {title, overview, picCaption, picCredit, playlistSpotify, playlistDeezer, playlistYoutube, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags} = this.state;
         console.log(title);
 
         // on fait appel à l'instance du service spé articles

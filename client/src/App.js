@@ -5,6 +5,7 @@ import About from './(f)components/About';
 import Contact from './(f)components/Contact';
 import Team from './(f)components/Team';
 import PublishedArticle from './(f)components/PublishedArticle';
+import PublishedPlaylist from './(f)components/PublishedPlaylist';
 import Articles from './(f)components/Articles';
 import Playlists from './(f)components/Playlists';
 import SignUp from './(b)components/SignUp';
@@ -70,28 +71,31 @@ class App extends Component {
       <div className="App">
 
         <Switch>
-          <Route exact path='/' component={Home}/>
+          <Route exact path='/' onUpdate={() => window.scrollTo(0, 0)} component={Home}/>
 
           <Route exact path='/editor' component={TextEditor}/>
 
           <Route exact path='/pgtm/admin/signup' render={(props) => <SignUp status={this.state.logged} updateUser={this.updateTheUser} history={props.history} />}/>
           <Route exact path='/pgtm/admin/login' render={(props) => <Login status={this.state.logged} updateUser={this.updateTheUser} history={props.history} />}/>
           <Route exact path='/pgtm/admin/profile' render={(props) => <Profile status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
-          <Route exact path='/pgtm/admin/articles/new' render={(props) => <AddRegularArticle status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
-          <Route exact path='/pgtm/admin/playlists/new' render={(props) => <AddPlaylist status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
-          <Route exact path='/pgtm/admin/articles/:id' render={(props) => <EditRegularArticle status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
-          <Route exact path='/pgtm/admin/playlists/:id' render={(props) => <EditPlaylist status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
-          <Route exact path='/pgtm/admin/articles' render={(props) => <ListOfArticles status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} />}/>
+          <Route exact path='/pgtm/admin/articles/new' onUpdate={() => window.scrollTo(0, 0)} render={(props) => <AddRegularArticle status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
+          <Route exact path='/pgtm/admin/playlists/new' onUpdate={() => window.scrollTo(0, 0)} render={(props) => <AddPlaylist status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
+          <Route exact path='/pgtm/admin/articles/:id' onUpdate={() => window.scrollTo(0, 0)} render={(props) => <EditRegularArticle status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
+          <Route exact path='/pgtm/admin/playlists/:id' onUpdate={() => window.scrollTo(0, 0)} render={(props) => <EditPlaylist status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
+          <Route exact path='/pgtm/admin/articles' onUpdate={() => window.scrollTo(0, 0)} render={(props) => <ListOfArticles status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} />}/>
 
-          <Route exact path='/about' component={About}/>
-          <Route exact path='/contact' component={Contact}/>
-          <Route exact path='/team' component={Team}/>
+          <Route exact path='/about' onUpdate={() => window.scrollTo(0, 0)} component={About}/>
+          <Route exact path='/contact' onUpdate={() => window.scrollTo(0, 0)} component={Contact}/>
+          <Route exact path='/team' onUpdate={() => window.scrollTo(0, 0)} component={Team}/>
           
-          <Route exact path='/article/:id' render={(props) => <PublishedArticle status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
-          <Route exact path='/articles/all' render={(props) => <Articles status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
-          <Route exact path='/playlists/all' render={(props) => <Playlists status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
+          <Route exact path='/article/:id' onUpdate={() => window.scrollTo(0, 0)} render={(props) => <PublishedArticle status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
+          
+          <Route exact path='/articles/all' onUpdate={() => window.scrollTo(0, 0)} render={(props) => <Articles status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
+          <Route exact path='/playlists/all' onUpdate={() => window.scrollTo(0, 0)} render={(props) => <Playlists status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
 
-          <Route path='*' component={NotFound} />
+          <Route exact path='/playlist/:id' onUpdate={() => window.scrollTo(0, 0)} render={(props) => <PublishedPlaylist status={this.state.logged} user={this.state.user} updateUser={this.updateTheUser} history={props.history} match={props.match} />}/>
+
+          <Route path='*' onUpdate={() => window.scrollTo(0, 0)} component={NotFound} />
         </Switch>
 
       </div>

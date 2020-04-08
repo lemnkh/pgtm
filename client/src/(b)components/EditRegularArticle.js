@@ -34,19 +34,13 @@ class EditRegularArticle extends React.Component {
     
     handleOptionChange = (changeEvent) => {
         this.setState({
-            article: {
-                ...this.state.article, // needed pour qu'il garde ce qui est déjà saisi sinon il remplacera le state juste par le article: {selectedLang: blabla}
-                lang: changeEvent.target.value
-            }
+            lang: changeEvent.target.value
         })
     };
 
     handleCheckboxChange = (changeEvent) => {
         this.setState({
-            article: {
-                ...this.state.article,
-                cat: changeEvent.target.value
-            }
+            cat: changeEvent.target.value
         })
     };
 
@@ -55,16 +49,17 @@ class EditRegularArticle extends React.Component {
 
         if (!this.state.picFeatured) return;
         
-        const {title, overview, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags} = this.state.article;
+        const {title, overview, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags} = this.state;
         const picFeatured = this.state.picFeatured;
         // on fait appel à l'instance du service spé articles
         this.service.updateArticle(this.props.match.params.id, title, overview, picFeatured, picCaption, picCredit, author, authorTwitter, authorIG, chapo, articleContent, lang, cat, tags)
             .then(response => {
                 
+                console.log("here it is", response)
                 // redirect
                 this.props.history.push('/pgtm/admin/articles');
 
-                console.log("DURING UPDATE", this.state.article.picFeatured)
+                console.log("DURING UPDATE", this.state.picFeatured)
             })
             .catch(error => console.log(error))    
     };
