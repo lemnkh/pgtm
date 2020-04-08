@@ -51,6 +51,37 @@
     font-size: 8px;
     letter-spacing: 1px;
   }
+
+  @media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+    .navbar-on-top {
+      background: none!important;
+      padding: 20px;
+    }
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.95);
+      background: #fff;
+      height: 80px;
+    }
+    .navbar-logo {
+      height: 100%;
+    }
+    .navbar {
+      height: 100%;
+    }
+    .navbar-sides {
+      width: 10%;
+    }
+    .navbar-middle {
+      width: 80%;
+    }
+  }
   
   /* NAVBAR > MENU */
   .overlay {
@@ -123,12 +154,25 @@
     padding-bottom: 9px;
     z-index: 20;
     background: rgba(255, 255, 255, 0.95);
+    background: #fff;
   }
   
   .content-site {
     padding-top: 18%;
     padding-bottom: 5%;
     width: 100%;
+  }
+
+  /* ipad */
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .content-site {
+      padding-top: 16%;
+      padding-bottom: 5%;
+      width: 100%;
+    }
   }
   
   /* FOOTER */

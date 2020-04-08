@@ -28,7 +28,7 @@ class Menu extends React.Component {
 
     render() {
         return (
-            <div>
+            
                 <div className="navbar-sides">
                     <div className="center" onClick={this.openMenu}>
                         <img src="/menu.png" alt="menu" className="navbar"/><br/>
@@ -74,7 +74,7 @@ class Menu extends React.Component {
                         </ul>
                     </div>
                 </div>
-                </div>
+                
             </div>
         );
     }
