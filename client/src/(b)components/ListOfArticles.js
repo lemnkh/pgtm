@@ -38,7 +38,7 @@ class ListOfArticles extends React.Component {
           .then(response => {
             this.props.updateUser(false);
             console.log("logout", response)
-            this.props.history.push('/pgtm/admin/articles');
+            this.props.history.push('/pgtm/admin/login');
           })
           .catch(error => console.log(error))
         ;

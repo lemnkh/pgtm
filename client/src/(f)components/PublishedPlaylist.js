@@ -3,6 +3,7 @@ import Layout from '../(f)components/Layout';
 import PublicService from '../components/PublicService';
 import { Link } from 'react-router-dom';
 import '../publishedarticle.css';
+import Playlist from '../(f)components/Playlist';
 
 class PublishedPlaylist extends React.Component {
     state = {
@@ -25,7 +26,7 @@ class PublishedPlaylist extends React.Component {
       const img = {
           width: "11px",
       }
-      
+      const spotifyLink = this.state.playlist.playlistSpotify;
     return (
         <Layout history={this.props.history}>
         {/* <div className="separator"></div>    */}
@@ -43,6 +44,8 @@ class PublishedPlaylist extends React.Component {
             </div>
 
             <div className="article-body" dangerouslySetInnerHTML={{__html: content}}></div>
+
+            {/* <Playlist spotify={spotifyLink} deezer={this.state.playlist.playlistDeezer} youtube={this.state.playlist.playlistYoutube} /> */}
             
             <div className="article-author">
                 <div>
