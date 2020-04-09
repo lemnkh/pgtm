@@ -38,7 +38,7 @@ class HomeFeed extends React.Component {
 
                             <div className="feed-right"><span className="feed-cat">{state.cat} ►</span>
                                 <br/>
-                                <Link to={"/article/" + state._id}>{state.lang} <span className="feed-title">{state.title}</span></Link>
+                                <Link to={"/article/" + state._id}><span className="feed-title">{state.lang} {state.title}</span></Link>
                             </div>
                         </div>
                             
